@@ -1,0 +1,380 @@
+%第2章
+\newpage
+\part{1/2スケール機体の設計製作及び検証}
+\label{本論}
+
+\section{機体構想}
+\subsection{吸着方法の検討}
+壁面は鋼であるため磁石での吸着が可能である. 
+重量物を磁石で支えるためには，磁石と壁面の距離を小さく，磁力が作用する面積を大きくすることが有効である.
+これらを容易に実現できると考えられる，履帯に磁石を取り付けた磁気クローラによる移動方法を採用した.
+
+\subsection{磁気クローラの検証}
+単純な磁気クローラによる壁面移動を考えた場合，クローラは壁面と垂直方向の剛性が低いため, 
+機体の自重や上昇加速時の慣性力により生じるモーメントが一定以上になると, 磁気クローラが壁面から一部はく離してししまうことがある(図\ref{normal}).
+米田研究室の松井が製作した磁気クローラ機体を用いた実験からもこの挙動を確認することができた(図\ref{simple}).
+
+\begin{figure}[H]
+  \begin{minipage}{0.5\hsize}
+    \centering
+    \includegraphics[height=80mm]{normal.png}
+    \caption{Simple magnetic clawer}
+    \label{normal}
+  \end{minipage}
+  \begin{minipage}{0.5\hsize}
+    \centering
+    \includegraphics[height=80mm]{simple-magnetic-clawer.jpg}
+    \caption{Experiment of magnetic clawer}
+    \label{simple}
+  \end{minipage}
+\end{figure}
+
+\newpage
+
+\subsection{剥離しないクローラの検討}
+クローラが剥離しない構造として, 2つの機構を検討した.
+
+1つ目は, クローラの後方に車輪を取り付けた物である(図\ref{omni}). クローラが剥離する時には, 
+機体が壁となす角度が変化するが, 受動車輪で突っ張ることにより角度を拘束することができる.
+旋回時の動作を考慮して, オムニホイールを使用する. 
+
+2つ目は，履板に設けたピンをレールに沿わせることにより壁面に垂直方向の剛性を持たせるものである(図\ref{concept_all}).
+これは先行研究\cite{magnetic-clawlar}\cite{magnetic-clawlar2}で開発された負荷分散クローラを参考にした同様の仕組みであるが，
+アキシアル荷重を受けることができる摺動面を設けることにより先行研究では論じられていない旋回動作を考慮した構造を提案する. 
+
+前者は天井面への応用が難しく, 後者と比較して機体サイズに対する磁石の面積が少なくなってしまう.
+そのため, 後者の機構を採用することとした.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{omni_ver.png}
+    \caption{Magnetic crawlers combined with omni wheels}
+    \label{omni}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{image2.png}
+  \caption{Magnetic crawlers with pins and rails}
+  \label{concept_all}
+\end{figure}
+
+\newpage
+
+\section{1/2スケール試作機}
+先述の機構の有効性を検証するために1/2スケール試作機（以下試作機）の製作を行った. 
+別途製作した1/2スケールのIH塗膜剥離装置の模型を取り付けた試作機を図\ref{prot1}に示す.
+    
+\begin{figure}[H]
+	\centering
+  \includegraphics[width=0.8\textwidth]{prot1.JPG}
+  \caption{Half scale prototype with model of induction unit \& head}
+	\label{prot1}
+\end{figure}
+
+\subsection{1/2スケール試作機の設計}
+\label{1/2design}
+履板は樹脂に磁石とピンを圧入及び接着する構造にした(図\ref{riban}). 
+履板は旋回時に壁面との間ですべり摩擦を生じる. その際スティック・スリップ現象を発生させずスムーズに旋回させるためには,
+耐摩耗性に優れ剛性の高い材料が適すると考えられる. 今回は形状自由度及び製作コストの観点も踏まえ熱溶解積層方式の3DプリントによるPLA樹脂で製作した.
+履板にステンレス製のピンを圧入し, POM板に溝を切削したレールに添わせ走行する形である.
+履板が取り付けられたPOM製チェーンをスプロケットにより駆動する.
+
+\begin{figure}[H]
+	\centering
+  \includegraphics[width=0.8\textwidth]{riban.png}
+  \caption{Track shoe of half scale prototype}
+	\label{riban}
+\end{figure}
+
+\newpage
+
+レールとピンのはめあいはクローラが確実に動作すると考えられるものを設定した.
+レールにあたる溝の幅が2[mm]でピンの直径が1.5[mm]に設定した (図\ref{prot2}).
+
+\begin{figure}[H]
+	\centering
+  \includegraphics[width=0.8\textwidth]{cad.png}
+  \caption{Cross section of rail of half scale prototype}
+	\label{prot2}
+\end{figure}
+
+実験には, 駆動用回路及びバッテリーを搭載した機体を用いた.
+その際の1/2スケール試作機の諸元を以下に示す.
+
+\begin{table}[htb]
+  \centering
+  \caption{Specification of half scale prototype}
+  \begin{tabular}{r|c} 
+    Length & 275[mm] \\
+    Width & 245[mm]  \\
+    Height & 85[mm]  \\ 
+    Weight & 2.9[kg] \\ 
+    Climbing speed & 0.04[m/s] \\
+  \end{tabular}
+  \label{specification}
+\end{table}
+
+\subsection{フレーム磁石}
+クローラとは別に磁石を取り付けることで, 移動時における壁面とIHヘッド取り付け部の変位を少なくすることができると考え, 機体本体にも磁石を取り付けることができるようにした. 
+後述する計測において, その有無による比較を行った. 
+
+\begin{figure}[H]
+	\centering
+  \includegraphics[width=0.8\textwidth]{body.JPG}
+  \caption{Half scale prototype with body magnet}
+	\label{ih}
+\end{figure}
+
+\newpage
+
+\section{動作実験及び摩擦力の計測}
+\subsection{概要}
+本学2号館の防火扉に置いて動作実験を行い上昇・旋回・下降の動作が問題なく行えることを確認した.
+さらに, 実験用鋼板で動作実験を行った. 同様に上昇・旋回・下降の動作が行えることを確認したが, 
+鋼板の裏か表, 位置, 試行した時によって旋回や移動時に徐々に滑り落ちる動作も確認できた.
+位置や表裏による塗膜厚のむらや試行時の温度や湿度, 鋼板の表面の状態が異なるためと考えられる.
+一定の条件下において摩擦力を計測し, 旋回時に滑り落ち具合を決定できる指標を定めた.
+
+\subsection{実験用鋼板}
+試作機の動作実験を行うために, 運用を想定している鋼橋の桁部の壁面を模した実験用鋼板を用意した(図\ref{plate}).
+厚さは多くの鋼橋に用いられているのと同じ10[mm]であり, 運用を想定している鋼橋に多く用いられているA-5塗装系\cite{paint}の塗装がされている. 
+塗装は4層となっているが, 機体が接触する最外部の塗装は長油性フタル酸樹脂が主成分となっている. 
+塗膜厚の計測したところ, 約0.29～0.38[mm]であった.
+実際に運用を想定する鋼橋の塗膜は劣化しており, 実験用鋼板とは表面の性質が異なる可能性がある.
+
+\begin{table}[H]
+  \centering
+  \caption{Specification of experimental steel plate}
+  \begin{tabular}{r|c}
+    Height & 990[mm] \\
+    Width & 994 [mm] \\
+    Thickness & 10[mm] \\ 
+    Material & SS400 \\ 
+    Paint thickness(actual measurements) & 0.29～0.38
+  \end{tabular}
+  \label{specification_sp}
+\end{table}
+
+\begin{figure}[H]
+	\centering
+  \includegraphics[width=0.8\textwidth]{steel-plate.jpg}
+  \caption{Experimental steel plate}
+	\label{plate}
+\end{figure}
+
+\newpage
+
+\subsection{摩擦力の計測方法}
+  先述の実験により摩擦力は, 鋼板上の位置や試行，表面の状態によって大きく異なることが分かっていた．
+  そのため今回は，脱脂した鋼板の同じ位置で計測を行うことで条件を揃えた．
+
+  \subsubsection{機体及び履板の静止摩擦力の計測方法}
+  静止した機体及び履板をフォースゲージ（日本電産シンポ FGP-10）を用い下方向に滑りだすまで手で引っ張り, その時の最大値を計測した.
+  機体については10回の計測を行った. 履板については, 機体の履帯が接触していた面の中の6か所においてそれぞれ2回ずつ計測した.
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.35\textwidth]{track-shoe_static-friction.png}
+    \caption{Measurement of static friction of Experiment steel plate and track shoe}
+    \label{static-system}
+  \end{figure}
+
+  \subsubsection{機体の動摩擦力の計測方法}
+  図\ref{dynamic-system}のように機体をフォースゲージを介して実験用鋼板を固定しているフレームに固定し, 
+  上昇方向に履板を空転させ, 10[s]の間サンプリング周期0.1[s]で計測した.
+
+  \subsubsection{履板の動摩擦力の計測方法}
+  図\ref{shoe_dynamic-system}のように履板をフォースゲージを用いて一定の速度で引き下げ, 機体の摩擦を計測した時に履板が接触していた場所を通過させた.
+  サンプリング周期0.1[s]で計測した.
+ 
+  \begin{figure}[H]
+    \begin{minipage}{0.5\hsize}
+      \centering
+      \includegraphics[width=0.7\textwidth]{dynamic-friction.png}
+      \caption{Measurement of dynamic friction of Experiment steel plate and robot}
+      \label{dynamic-system}
+    \end{minipage}
+    \begin{minipage}{0.5\hsize}
+      \centering
+      \includegraphics[width=0.7\textwidth]{track-shoe_dynamic-friction.png}
+      \caption{Measurement of dynamic friction of Experiment steel plate and track shoe}
+      \label{shoe_dynamic-system}
+    \end{minipage}
+  \end{figure}
+
+\newpage
+
+\subsection{結果}
+機体の摩擦力計測の結果を図\ref{kitai_friction}, 履板単体の摩擦力計測の結果を図\ref{riban_friction}のグラフに示す. 
+機体の摩擦力の値は計測値に機体の重力を加算したものとしている.
+フレーム磁石により, 摩擦力が大きく増加していることが確認できる.
+また, 動摩擦力は静止摩擦力より小さいことが確認できた.
+
+表\ref{friction}に結果の平均値を示す. 履板単体については, 壁面との接触履板の数(28[個])との積も記載した. また, この積に対する機体全体の摩擦力の割合も示す. 積に対して機体全体の摩擦力が低下している要因は, 機体の重力によるモーメント等によりそれぞれの履板と壁面の吸着力が一定でないことなどが考えられる.
+
+\begin{figure}[H]
+  \begin{minipage}{0.6\hsize}
+    \centering
+    \includegraphics[keepaspectratio,height=90mm]{kitai_friction.png}
+    \caption{Friction force with experimental steel panel half scale prototype}
+    \label{kitai_friction}
+  \end{minipage}
+  \begin{minipage}{0.4\hsize}
+    \centering
+    \includegraphics[keepaspectratio,height=90mm]{riban_friction.png}
+    \caption{Friction force between experimental steel panel and tack shoe}
+    \label{riban_friction}
+  \end{minipage}
+\end{figure}
+
+
+\begin{table}[h]
+  \caption{Average of friction force}
+  \centering
+  \begin{tabular}{cccc|cc}
+              & \multicolumn{2}{c}{body} & track shoe & ratio of body  &\\ \cline{2-3}
+  body magnet & without      & with      & -          & and track shoe    &\\ \cline{1-5}
+  static      & \textbf{52} [N]       & 105 [N]   & 2.08 [N] * 28 $\approx$ \textbf{58} [N]   & \textbf{0.90} &\\
+  dynamic     & \textbf{34} [N]       & 99 [N]    & 1.54 [N] * 28 $\approx$ \textbf{43} [N]   & \textbf{0.79} &
+  \end{tabular}
+  \label{friction}
+\end{table}
+
+
+\newpage
+
+\subsection{超新地旋回に関する考察}
+\label{超新地旋回に関する考察}
+超信地旋回の動作は動摩擦力によるものであるため，
+動摩擦力を重量で除した比が徐々に滑り落ちるか否かの指標になると考えた．
+計測時の条件においては，フレーム磁石がない時に滑り落ちる動作が確認でき，
+フレーム磁石があるときには滑り落ちる動作は確認できなかった．
+よって, 先述の比がTable \ref{specification}, \ref{friction}より$99/(2.9*9.8)\approx3.5$以上であるとき, 
+つまり動摩擦力が重量の3.5倍以上であるときは滑り落ちずに旋回できると考えた．
+この比の変化による挙動は図\ref{friction3}に示すようになった. 
+また, 動摩擦力が大きすぎる場合は, スティックスリップ現象の発生, 
+旋回時の負荷の大幅な増加, それによる履板の著しい摩耗などの問題が懸念される. 
+このため, すべての旋回動作が問題なく行える範囲で適切な摩擦力を設定する必要がある.
+
+\begin{figure}[H]
+	\centering
+  \includegraphics[width=1\textwidth]{friction-weight.png}
+  \caption{Relationship between the ratio of dynamic friction force to weight and robot motion}
+	\label{friction3}
+\end{figure}
+
+\newpage
+
+\section{移動時における壁面とIHヘッド取り付け部の変位の計測}
+\label{displacement}
+\subsection{IHヘッドの取り付け方法}
+IH塗膜剥離においてIHヘッドユニットにはOリングとプーリーによる受動車輪が取り付けあり, 
+作業者はこれを壁に押し当て, IHヘッド取付部と壁面の距離を一定に保ちながら加熱を行うことができる.
+今回は旋回動作を伴うため, 車輪を用いる場合はオムニホイールに換装する必要がある.
+車輪を用いる場合はIHヘッドを壁面に押し付ける機構が必要となるが, 
+移動時における壁面とIHヘッド取り付け部の変位が許容できる範囲であれば, 車輪は不要となる.
+そこで, フレーム磁石によりレールの遊びによるIHヘッド部分の変位を軽減させることができると考えた.
+この案の有効性を検証するため, 移動時における壁面とIHヘッド取り付け部の変位の計測し, フレーム磁石の有無による変位を比較した.
+
+\subsection{計測方法}
+
+実験用鋼板において上昇移動する際のIHヘッド取り付け部分の壁面との変位をレーザ変位センサを用いて計測した.
+12[s]の間一定の速度で上昇移動を行い, その時の変位をデータロガーを用いて記録した.
+
+\begin{table}[h]
+  \centering
+  \caption{Detail of sensor}
+  \begin{tabular}{ccc}
+    Manufacturer & Product name & Model \\ \hline
+    KEYENCE & CMOS laser application sensor head & IL-S065 \\ 
+    KEYENCE & CMOS laser application Amplifier unit & IL-1000 \\ 
+    GRAPHTEC & midi LOGGER & GL900 \\ \hline 
+  \end{tabular}
+  \label{laser2}
+\end{table}
+
+\begin{figure}[H]
+	\centering
+  \includegraphics[width=0.8\textwidth]{laser.png}
+  \caption{half Scale prototype with laser displacement sensor}
+	\label{laser1}
+\end{figure}
+
+\newpage
+
+\subsection{計測結果}
+図\ref{displacement_graph}, Table \ref{displacement}に計測結果を示す.
+フレーム磁石により大幅に変位が軽減できることが確認できた. 
+また, フレーム磁石がない時, 機体が剥離する方向に周期的な振動が発生していることが確認できた.
+
+\begin{figure}[H]
+	\centering
+  \includegraphics[width=1\textwidth]{distance.png}
+  \caption{Comparison of displacement during wall running with and without body magnet}
+	\label{displacement_graph}
+\end{figure}
+
+\begin{table}[H]
+  \caption{Displacement during wall running}
+  \centering
+  \begin{tabular}{ccc}
+  body magnet          & without       & with          \\ \hline
+  Maximum displacement & 0.42 [mm]     & 0.16 [mm]
+  \end{tabular}
+  \label{displacement_table}
+\end{table}
+
+\subsection{考察}
+\label{displacement_think}
+フレーム磁石は, 車輪を用いずに加熱を行うにあたり有効であることが確認できた.
+4.89～10.65[s]の周期的な振動の周期の平均は, 0.36[s]であった. 
+これは機体の上昇移動速度から求められる履板が壁面に張り付く周期と概ね一致していた.
+レールとピンに遊びがないと仮定した場合, 履板が壁面に張り付く際, 履板の角がすでに壁面に接触している履帯よりも壁面方向に飛び出ることが幾何学的に分かる (図\ref{geometry}).
+レールとピンに遊びがあるため, すでに壁面に接触している履板が剥がれることなく, 機体が剥がれる方向に変位していると考えられる. これが振動の原因となっていることが考えられる.
+この振動も, フレーム磁石及びレールとピンの適度な遊びにより軽減することができることが確認できた.
+
+\begin{figure}[H]
+	\centering
+  \includegraphics[width=0.8\textwidth]{geometry.png}
+  \caption{Geometric relationship between wall and track shoe}
+	\label{geometry}
+\end{figure}
+
+\newpage
+
+\section{自律動作の検討}
+橋梁のI字鋼の一面の塗膜加熱を自律動作で行うことが求められている. 
+図\ref{auto2}に示すルートで自律動作を行うことを検討した.
+実際の現場では作業員がスクレーバーを用い塗膜の剥離を行い, 主機へとつながるホースの取り回しを作業員が行うため, 
+作業員の操作により一時停止及び再開できるようにする必要がある.
+
+\begin{figure}[H]
+	\centering
+  \includegraphics[width=0.8\textwidth]{auto2.jpg}
+  \caption{Route of robot}
+	\label{auto2}
+\end{figure}
+
+\subsection{1/2スケール試作機による自律動作の実験}
+\label{1/2auto}
+姿勢を制御するためのIMUと端部を検出するための距離センサーを用いた自律動作を実装した. IMUから得られる加速度と角速度から姿勢(地面に対する機体の角度)を検出するために\cite{moon}のサンプルプログラムを用いた. 
+使用したセンサを図\ref{sensor}に示す.
+動作の様子を図\ref{auto}に示す.
+
+\begin{table}[htb]
+  \centering
+  \caption{specification of sensor}
+  \begin{tabular}{ccc}
+    Manufacturer & Product name & Model \\ \hline
+    BOSCH & Absolute orientation sensor & BMX055 \\ 
+    SHARP & Distance Measuring Sensor Unit & GP2Y0A21YK0F \\ \hline
+    \label{sensor} 
+  \end{tabular}
+\end{table}
+
+\begin{figure}[H]
+	\centering
+  \includegraphics[width=0.9\textwidth]{auto.png}
+  \caption{Autonomous drive of half scale prototype}
+	\label{auto}
+\end{figure}

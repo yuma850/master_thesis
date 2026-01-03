@@ -1,0 +1,128 @@
+%第1章
+\part{序論}
+\label{zyoron}
+
+\section {鋼橋におけるIH塗膜剥離と自動化}
+\subsection{研究背景}
+
+鋼橋とは, 鋼製の橋である. 
+日本の鋼橋は,道路橋は15[m]以上のものだけでも約6万橋, 鉄道橋は4万橋存在する(2011年時点)\cite{koukyou}.
+鋼橋の主な損傷要因は腐食と疲労であるため, 腐食を防止するための塗装がされている.
+防食性能を維持するためには, 定期的な塗装の塗り替えが必要である.
+新しい塗装を行う前に劣化した旧塗膜を剥離することが, 防食性能を高めるうえで重要である.
+塗膜剥離方法としてに, ブラストや塗膜剥離剤を用いた工法が挙げられるが, 
+これらは騒音, 粉じんの発生, 廃材処理などの課題がある. 
+そこで, 前述の課題を解消したIH（電磁誘導加熱）よる塗膜剥離が普及し始めている.
+
+IHによる塗膜剥離の手順を述べる.
+まず, 図\ref{fig:ih}における加熱ヘッド及びヘッドユニット（以下IHヘッド）を作業者が移動させることにより加熱を行う.
+次に, 加熱により界面破壊を起こした塗膜を鋼板からスクレーパにより剥離する.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.65\textwidth]{about-ih.png}
+	\caption{Overview of the induction heating paint removal\cite{ih-group}}
+	\label{fig:ih}
+\end{figure}
+
+共同研究先の日本橋梁株式会社は, ノルウェーのRPR Technologiesが開発した「RPR1650システム」に, 冷却水供給ユニットを組み合わせたIH装置システムを運用している. \cite{ih-catalog}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{ih-system.png}
+  \caption{System diagram of the induction heating paint removal\cite{ih-catalog}}
+	\label{fig:ih2}
+\end{figure}
+
+\newpage
+
+実際の作業の様子を以下の図に示す.
+IHヘッドの質量はケーブルを含め標準的なもので約12[kg]あり, これを上下に移動させる作業者の大きな負担となっている.
+IHヘッドの移動を自動化し作業者の負担を軽減することが求められている.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{ih-work.png}
+  \caption{Work of the induction heating paint removal\cite{ih-catalog}}
+	\label{fig:ih3}
+\end{figure}
+
+
+\subsection{研究目的}
+
+本研究の目的は,  
+IHヘッドを搭載し,鋼橋の壁面を自走しながら塗膜を加熱するロボットの開発を行うことである.
+本研究は日本橋梁株式会社（以下日本橋梁）との共同研究である.
+
+\subsection{研究目標}
+\label{goal}
+以下に示す日本橋梁からの要望である設計要件満たしつつ，実際のIHヘッドを搭載し加熱を行う塗膜剥離試験において塗膜剥離に必要な過熱を行うことのできるロボットを設計製作することを研究目標とする．
+
+
+\begin{comment}
+	\begin{enumerate}
+	%\item 安全性と効率を両立する
+	\item 端部を検知して停止する
+		IMU及び距離センサを用いた自律動作を行う．
+	\item 半自動で塗膜剥離を行える
+	\item 2人で運搬できるようにする
+	\item 約0.05[m/s]で加熱を行う
+	\item 加熱は縦方向に行う
+\end{enumerate}
+
+以下の方法でこの目標を達成する.\\
+%1. 永久磁石を用いた吸着により安全性を確保する.\\
+1, 2. IMU及び距離センサを用いた自律動作を行う.\\
+3. 
+
+
+\end{comment}
+
+以下に設計要件とその達成方法を述べる．
+
+\begin{description}
+	\item[端部検出による停止]\mbox{}\\
+	距離センサを用い端部検出を行う．
+	\item[半自動過熱]\mbox{}\\
+	MU及び距離センサを用いた自律動作を行う.
+	\item[2人で運搬可能]\mbox{}\\
+	厚生労働省による「職場における腰痛予防対策指針」\cite{youtuu}を踏まえ, 機体の質量を60[kg]未満とする.
+	\item[約0.05 m/sで加熱]\mbox{}\\
+	これを達成可能なモータの選定及び減速装置，クローラの設計を行う．
+\end{description}
+
+\newpage
+
+\section{先行研究}
+
+\subsection{Vertical \& Horizontal Robotics\cite{rpr-robot}}
+
+本研究でも使用するIH塗膜剥離装置の開発元であるRPR Technologiesが提案するロボットである.
+貯蔵タンクに磁石で吸着し, IHヘッドを自動で移動させ加熱することができる.
+機体が大型であるため, 本研究が目的とする橋梁の塗膜剥離作業に運用することは難しい.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{rpr-robot.jpg}
+  \caption{Vertical \& Horizontal Robotics\cite{rpr-robot}}
+	\label{fig:ih4}
+\end{figure}
+
+\subsection{磁気クローラ式吸着移動ロボット\cite{magnetic-clawlar}～\cite{magnetic-clawlar3}}
+
+日立製作所の内藤らが開発した磁気クローラを用いた壁面移動ロボットである. 
+磁石辺の個数に比例した吸着力をもつ負荷分散クローラを提案している.
+本研究において必要である旋回動作については論じられていない. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{hitachi.jpg}
+  \caption{Wall Surface Robot with Magnetic Crawlers\cite{magnetic-clawlar3}}
+	\label{fig:ih5}
+\end{figure}
+
+
+%\subsection{磁気クローラロボット}\cite{magnetic-clawlar}
+
+%ダイヤ電子応用株式会社のホームページに記載のあった磁気クローラロボットである. 
+%詳細は不明なため, 調査中である.

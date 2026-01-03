@@ -1,0 +1,197 @@
+\documentclass[10pt]{jarticle}
+\usepackage{float}
+\usepackage{adrobo_abst}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{amssymb,amsmath}
+\usepackage{bm}
+\usepackage[superscript]{cite}
+\usepackage{enumerate}
+\usepackage{url}
+\usepackage{comment}
+%\usepackage[absolute]{textpos}
+
+\setlength\intextsep{5pt}
+\setlength\textfloatsep{5pt}
+
+\renewcommand\citeform[1]{(#1)}
+
+\graphicspath{{../fig/}}
+
+\begin{document}
+    
+    \makeatletter
+    \doctype{2020年度卒業論文概要}
+    \title{鋼橋の塗膜剥離支援を行う磁気クローラ式壁面移動ロボットの開発}{}
+    \etitle{Development of Wall Climbing Robot with Magnetic Crawlers to Support Paint Removal of Steel Bridges}{}
+    
+    \author{17C1001\hspace{.5zw}青木朝啓}
+    \eauthor{Tomohiro AOKI}
+    
+    \makeatother
+    
+    \abstract{Most of the steel bridges are painted to prevent corrosion. In order to maintain the corrosion protection performance, it is necessary to repaint the bridges periodically. Before applying a new paint, it is important to remove the deteriorated existing paint to improve the corrosion protection performance. Currently, the paint is stripped by induction heating. But the equipment for induction heating is heavy, and it is a heavy burden for the workers who operate it. So, we developed a wall climbing robot that can absorb the wall of a steel bridge using magnetic crawlers and move equipment for induction heating automatically. 
+    }
+    
+    \keywords{Magnetic Crawler, Wall Climbing Robot, Steel Bridge Maintenance}
+    
+    \maketitle
+    
+    \supervisor{指導教員： 米田完}
+    
+    \section{緒\hspace{2zw}言}%===========================
+    
+    鋼橋の防食性能を維持するためには，定期的な塗装の塗り替えが必要である.
+    新しい塗装を行う前に劣化した既存塗膜を剥離することが，防食性能を高めるうえで重要である.
+    
+    塗膜剥離の方法の一つとして，IH（電磁誘導加熱）による塗膜剥離が行われている.
+    しかし，作業者が約12[kg]あるIHの加熱装置を壁面上において移動させる必要があり，重労働となっている.
+
+    本研究は，日本橋梁株式会社（以下日本橋梁）と共同で行い，
+    IHの加熱装置を鋼橋の壁面に吸着させ自動で移動させるロボットの開発を行う.
+    
+    \section{研究目標}%===========================
+    日本橋梁からの要望は以下の通りであり，これを研究目標とする.
+    
+    \vspace{-1.5mm}
+    \begin{enumerate}
+        \setlength{\parskip}{0cm} % 段落間
+        \setlength{\itemsep}{0cm} % 項目間
+	    \item 安全性と効率を両立する
+	    \item 端部を検知して停止する
+	    \item 半自動で塗膜剥離を行う
+	    \item 2人での運搬を可能とする
+	    \item 0.05[m/s]前後で加熱を行う
+	    \item 加熱は縦方向に行う
+    \end{enumerate}
+    \vspace{-1.5mm}
+    
+    それぞれ以下の方法でこれらの目標を達成する.
+
+    1. 永久磁石を用いた吸着により安全性を確保する.
+
+    2, 3. IMU及び距離センサを用いた自律動作を行う.
+
+    4. 機体の質量を60[kg]未満とする.
+    
+    \section{機体構想}
+    壁面は鋼であるため磁石での吸着が可能である. 
+    重量物を磁石で支えるためには，磁石と壁面の距離を小さく，磁力が作用する面積を大きくすることが
+    有利になると考えた.
+    これらの理由により，履帯に磁石を取り付けた磁気クローラによる移動方法を採用した.
+
+    通常の履帯に磁石を取り付けた場合，履帯は走行面に垂直の方向の剛性が低いため，
+    壁面を登る際に機体の重力が発生するモーメントにより徐々に履帯が壁面から剥がれてしまう.
+
+    そこで，履板に設けたピンをレールに沿わせることにより壁面に垂直方向の剛性を持たせる方式を採用した.
+    これは先行研究\cite{magnetic-clawlar2}\cite{magnetic-clawlar}を参考にした同様の仕組みであるが，
+    アキシアル荷重を受けることができる摺動面を設けることにより先行研究では論じられていない旋回動作を考慮した構造とした. 
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.46\textwidth]{image.png}
+        \vspace{-3mm}
+        \caption{Concept of mechanism}
+        \label{friction3}
+    \end{figure}
+
+    \newpage
+    
+    \section{1/2スケール試作機}
+    先述の機構の有用性を検証するために1/2スケール試作機（以下試作機）の製作を行った. 
+    別途製作した1/2スケールのIH塗膜剥離装置の模型を取り付けた試作機をFig. \ref{prot1}に示す.
+    実験を行うにあたり，回路を取り付けた際の諸元をTable \ref{specification}に示す.
+    
+    またクローラとは別に，機体本体にも磁石を取り付けた. これにより壁面に対するIH塗膜剥離装置取り付け部の変位の軽減及び吸着力の増加が確認できた.
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.4\textwidth]{prot1.JPG}
+        \vspace{-3mm}
+        \caption{Half scale prototype}
+        \label{prot1}
+    \end{figure}
+
+    \vspace{-1mm}
+
+    \begin{table}[h]
+        \centering
+        \caption{Specification of half scale prototype}
+        \vspace{1mm}
+        \begin{tabular}{cc} \hline
+          Length & 275[mm] \\
+          Width & 245[mm] \\
+          Height & 85[mm] \\ 
+          Weight & 2.9[kg] \\ 
+          climbing speed & 0.04[m/s] \\ \hline
+        \end{tabular}
+        \label{specification}
+      \end{table}
+   
+    \section{動作実験及び摩擦力の計測}
+    鋼橋の壁面を模した実験用鋼板で動作実験を行った．
+    移動，旋回の動作が問題なく行えることが確認できた．
+    また，実験用鋼板における位置や試行，表面の状態, 本体磁石の有無に応じて，移動及び旋回動作時に徐々に滑り落ちる動作も確認できた．
+
+    \subsection{摩擦力の計測}
+    フォースゲージを用い実験用鋼板との摩擦力を計測した．
+    先述の実験により，摩擦力は位置や試行，鋼板の表面の状態によって大きく異なることが分かっていた．
+    そのため今回は，脱脂した鋼板の同じ位置で計測を行うことで条件を揃えた．
+    結果をTable \ref{friction}に示す．
+    結果から，動摩擦力は静止摩擦力より小さいこと及び本体磁石により摩擦力が大幅に増加することが確認できた．
+    \vspace{-2mm}
+
+    \begin{table}[h]
+        \centering
+        \caption{Friction force}
+        \begin{tabular}{ccc}
+        body magnet & without      & with      \\ \hline
+        static      & 52[N]        & 105[N]    \\
+        dynamic     & 34[N]        & 99[N]    
+        \end{tabular}
+        \label{friction}
+    \end{table}
+    
+    \newpage
+
+    \subsection{超新地旋回の挙動に関する考察}
+    超信地旋回の動作は動摩擦力によるものであるため，動摩擦力を重量で除した比が徐々に滑り落ちるか否かの指標になると考えた．
+    計測時の条件においては，本体磁石がない時に滑り落ちる動作が確認でき，本体磁石があるときには滑り落ちる動作は確認できなかった．
+    よって，先述の比がTable \ref{specification}, \ref{friction}より$99/(2.9*9.8)$以上であるときは滑り落ちずに旋回できると考えた．
+
+    \section{自律動作}
+    IMUを用いた姿勢制御と距離センサを用いた端部検出による自律動作を試作機に実装し，動作を確認した．
+    上下移動を基本に，レーンチェンジにより横方向の移動を行う． 
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.4\textwidth]{auto.png}
+        \vspace{-3mm}
+        \caption{Autonomous drive of half scale prototype}
+        \label{auto}
+    \end{figure}
+
+    \section{結\hspace{2zw}言}
+    本研究では，鋼橋においてIH塗膜剥離装置を壁面で自動走行させるロボットの開発の過程において
+    1/2スケールの試作機を製作し，検証を行った．
+    今後はフルスケールサイズの機体を製作し，現場で実際のIH塗膜剥離装置を取り付け試験を行うことを目指す．
+
+    \vspace{5truemm}
+    {\footnotesize
+        \begin{thebibliography}{99}
+
+            \bibitem{magnetic-clawlar2} 
+	        内藤紳司，佐藤主税，藤井正昭: ``負荷分散クローラ機構の開発''， 
+        	日本ロボット学会誌，1987，vol.5，pp.335-388. 
+	        %\url{https://www.jstage.jst.go.jp/article/jrsj1983/5/5/5_5_335/_pdf/-char/ja}
+	        %（参照日 2020年12月31日）
+
+            \bibitem{magnetic-clawlar} 
+	        内藤紳司: ``磁気クローラ式吸着移動ロボット''，日本ロボット学会誌，1992，vol.10，pp.606-608.
+	        %\url{https://www.jstage.jst.go.jp/article/jrsj1983/10/5/10_5_606/_pdf/-char/ja}
+	        %（参照日 2020年12月30日）
+            
+        \end{thebibliography}
+    }
+    \normalsize
+    
+\end{document}

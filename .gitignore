@@ -1,0 +1,23 @@
+# LaTeX build files
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+
+# PDF（不要なら除外）
+*.pdf
+
+# temporary
+*.tmp
+*.bak
+.DS_Store
+.vscode/

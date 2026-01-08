@@ -1,380 +1,440 @@
 %第2章
 \newpage
-\part{1/2スケール機体の設計製作及び検証}
-\label{本論}
+\part{ワイヤ吊り下げ式壁面塗膜除去ロボット}
+\label{waiyaturisagesik}
 
 \section{機体構想}
-\subsection{吸着方法の検討}
-壁面は鋼であるため磁石での吸着が可能である. 
-重量物を磁石で支えるためには，磁石と壁面の距離を小さく，磁力が作用する面積を大きくすることが有効である.
-これらを容易に実現できると考えられる，履帯に磁石を取り付けた磁気クローラによる移動方法を採用した.
+	本章で説明するロボットは高さのある橋脚での作業を想定している．
+	高さ方向に広く作業範囲がある場合，先行研究と同様に壁面に吸着した状態で移動する方式が優位だと考えられる．
+  
+	鋼橋での壁面移動の方式は大きく分けて磁気吸着移動・真空吸着移動・ワイヤ移動の3パターンがある．
 
-\subsection{磁気クローラの検証}
-単純な磁気クローラによる壁面移動を考えた場合，クローラは壁面と垂直方向の剛性が低いため, 
-機体の自重や上昇加速時の慣性力により生じるモーメントが一定以上になると, 磁気クローラが壁面から一部はく離してししまうことがある(図\ref{normal}).
-米田研究室の松井が製作した磁気クローラ機体を用いた実験からもこの挙動を確認することができた(図\ref{simple}).
+	磁気吸着移動と真空吸着移動は壁面の状態に影響を受けやすく，壁面の凹凸によっては落下の危険性もある．
+	またIH塗膜剥離装置は200度近い温度で加熱を行うため，熱に弱い磁石では吸着力が低下していき，ブロアや真空ポンプを用いた真空吸着では，電源喪失した際に落下してしまう．
 
-\begin{figure}[H]
-  \begin{minipage}{0.5\hsize}
-    \centering
-    \includegraphics[height=80mm]{normal.png}
-    \caption{Simple magnetic clawer}
-    \label{normal}
-  \end{minipage}
-  \begin{minipage}{0.5\hsize}
-    \centering
-    \includegraphics[height=80mm]{simple-magnetic-clawer.jpg}
-    \caption{Experiment of magnetic clawer}
-    \label{simple}
-  \end{minipage}
-\end{figure}
+	それに比べワイヤを用いた壁面移動では，ワイヤを介してレールなどに常に接続された状態であるため落下の可能性がかなり低い．
+	また吊り下げ式であれば壁面との接触面を抑えることも可能であるため，壁面の状態による影響を受けにくく，さらに高負荷をかけての壁面移動も可能である．
+	よって本章のロボットは，吊り下げ式かつワイヤのみで壁面を全方位移動可能なロボットである．
 
-\newpage
+	\subsection{動作原理の検討}
+		ワイヤのみで壁面上の全方位を移動可能にするため，以下の図\ref{label2_2}のような組み方を考案した．
 
-\subsection{剥離しないクローラの検討}
-クローラが剥離しない構造として, 2つの機構を検討した.
+		図の黒線がワイヤを示している．
+		上昇下降の動作は全てのプーリを同方向に回転させてワイヤを巻き取ることで行う．
+		左右方向に動作する場合，上下プーリは固定した状態で機体の姿勢を維持する．
+		そして左右プーリを逆方向に回転させることで巻き取り動作と巻き出し動作を別々に行い，左右任意の方向に移動を行う．
 
-1つ目は, クローラの後方に車輪を取り付けた物である(図\ref{omni}). クローラが剥離する時には, 
-機体が壁となす角度が変化するが, 受動車輪で突っ張ることにより角度を拘束することができる.
-旋回時の動作を考慮して, オムニホイールを使用する. 
+		これにより壁面上の全方位を移動可能となると考えられる．
 
-2つ目は，履板に設けたピンをレールに沿わせることにより壁面に垂直方向の剛性を持たせるものである(図\ref{concept_all}).
-これは先行研究\cite{magnetic-clawlar}\cite{magnetic-clawlar2}で開発された負荷分散クローラを参考にした同様の仕組みであるが，
-アキシアル荷重を受けることができる摺動面を設けることにより先行研究では論じられていない旋回動作を考慮した構造を提案する. 
+		さらにこの張り方の最大の利点が，張られている全てのワイヤの内いずれか1本が破断したとしても落下の可能性が限りなく低いことである．
+		上下プーリでロボットを水平に維持し左右プーリは左右移動に使われるが，いずれもロボットを吊り下げて支えておりレールランナー同士の間隔もワイヤで制限をかけているため，破断にも対応可能だと考えられる．
 
-前者は天井面への応用が難しく, 後者と比較して機体サイズに対する磁石の面積が少なくなってしまう.
-そのため, 後者の機構を採用することとした.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.4\textwidth]{omni_ver.png}
-    \caption{Magnetic crawlers combined with omni wheels}
-    \label{omni}
-\end{figure}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.8\textwidth]{image2.png}
-  \caption{Magnetic crawlers with pins and rails}
-  \label{concept_all}
-\end{figure}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\textwidth]{dousaimage.png}
+  	\caption{W}
+		\label{label2_2}
+	\end{figure}
 
 \newpage
 
-\section{1/2スケール試作機}
-先述の機構の有効性を検証するために1/2スケール試作機（以下試作機）の製作を行った. 
-別途製作した1/2スケールのIH塗膜剥離装置の模型を取り付けた試作機を図\ref{prot1}に示す.
-    
-\begin{figure}[H]
-	\centering
-  \includegraphics[width=0.8\textwidth]{prot1.JPG}
-  \caption{Half scale prototype with model of induction unit \& head}
-	\label{prot1}
-\end{figure}
+	\subsection{機体構成}
+		
+	ロボットの構想を図 \ref{label2_1}に示す．
+	機体の構成は，移動用のワイヤ巻き取りプーリが4つ，それらを駆動させるためのアクチュエータが4つ，プーリに接続されたワイヤーが機体上部のレールランナーに接続されて機体を支え，レールランナーがレールに沿いながら横方向へ移動を行う．
+	壁面との距離調整のために機体の4点にねじ式のボールキャスターを搭載している．
 
-\subsection{1/2スケール試作機の設計}
-\label{1/2design}
-履板は樹脂に磁石とピンを圧入及び接着する構造にした(図\ref{riban}). 
-履板は旋回時に壁面との間ですべり摩擦を生じる. その際スティック・スリップ現象を発生させずスムーズに旋回させるためには,
-耐摩耗性に優れ剛性の高い材料が適すると考えられる. 今回は形状自由度及び製作コストの観点も踏まえ熱溶解積層方式の3DプリントによるPLA樹脂で製作した.
-履板にステンレス製のピンを圧入し, POM板に溝を切削したレールに添わせ走行する形である.
-履板が取り付けられたPOM製チェーンをスプロケットにより駆動する.
+  \vspace{2mm}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\textwidth]{robotkousou.png}
+  	\caption{W}
+		\label{label2_1}
+	\end{figure}
 
-\begin{figure}[H]
-	\centering
-  \includegraphics[width=0.8\textwidth]{riban.png}
-  \caption{Track shoe of half scale prototype}
-	\label{riban}
-\end{figure}
+  	\subsubsection{加熱装置と搭載方法}
 
-\newpage
+	\newpage
 
-レールとピンのはめあいはクローラが確実に動作すると考えられるものを設定した.
-レールにあたる溝の幅が2[mm]でピンの直径が1.5[mm]に設定した (図\ref{prot2}).
+  	\subsubsection{ワイヤ巻き取り用プーリ設計}
+			ワイヤは強度に優れており高荷重を支えるのに適しているが，使用上で最も問題となるのが巻き取りの仕方である．
 
-\begin{figure}[H]
-	\centering
-  \includegraphics[width=0.8\textwidth]{cad.png}
-  \caption{Cross section of rail of half scale prototype}
-	\label{prot2}
-\end{figure}
+			何もない曲面で負荷をかけながらワイヤを巻き取る場合，途中でワイヤが乱巻きを起こす可能性が高く，各プーリを同じだけ回転させても巻き取り量が変わるため移動に影響を与える．
+			さらに乱巻きが起こると，巻き出しの際に出すことができず移動できなくなる可能性がある．
 
-実験には, 駆動用回路及びバッテリーを搭載した機体を用いた.
-その際の1/2スケール試作機の諸元を以下に示す.
+			そこで図 \ref{label5}のような溝付きプーリの設計を行った．
+			諸元を表 \ref{specification3}に示す．
 
-\begin{table}[htb]
-  \centering
-  \caption{Specification of half scale prototype}
-  \begin{tabular}{r|c} 
-    Length & 275[mm] \\
-    Width & 245[mm]  \\
-    Height & 85[mm]  \\ 
-    Weight & 2.9[kg] \\ 
-    Climbing speed & 0.04[m/s] \\
-  \end{tabular}
-  \label{specification}
-\end{table}
+			プーリの曲面に溝を付けることで，機体重量により張力があるためワイヤが溝に沿ってまかれ，乱巻きを防止することが可能である．
+			１層目を溝に沿って綺麗にまくことができれば，２層目以降は隣り合うワイヤが溝を作るため，常に溝に沿って巻きつけることが可能である．
 
-\subsection{フレーム磁石}
-クローラとは別に磁石を取り付けることで, 移動時における壁面とIHヘッド取り付け部の変位を少なくすることができると考え, 機体本体にも磁石を取り付けることができるようにした. 
-後述する計測において, その有無による比較を行った. 
+			今回開発したロボットの作業範囲は基本レールやフレームに依存するが，ワイヤの巻き取り量によっても変わってくるため，プーリ径も重要な値となる．
+			下記の式により，プーリの外径とそれによる最大可動高さを導出可能である．
 
-\begin{figure}[H]
-	\centering
-  \includegraphics[width=0.8\textwidth]{body.JPG}
-  \caption{Half scale prototype with body magnet}
-	\label{ih}
-\end{figure}
+			(1)は使用するプーリの値から周長分のワイヤ長さを導出している．
+			(2)はプーリに巻くワイヤの段数によって必要なプーリの壁の外径を導出している．
+			(3)は(2)より求められたプーリの壁の外径を元に，ロボットの最大可動高さを導出している．
 
-\newpage
+			今回のロボットに使用しているプーリの壁の外径 $D$ は78[mm]であるため，下記の式より理論上の最大可動高さは2863[mm]である．
+			これはプーリにワイヤを10段重ねた際の値である．
 
-\section{動作実験及び摩擦力の計測}
-\subsection{概要}
-本学2号館の防火扉に置いて動作実験を行い上昇・旋回・下降の動作が問題なく行えることを確認した.
-さらに, 実験用鋼板で動作実験を行った. 同様に上昇・旋回・下降の動作が行えることを確認したが, 
-鋼板の裏か表, 位置, 試行した時によって旋回や移動時に徐々に滑り落ちる動作も確認できた.
-位置や表裏による塗膜厚のむらや試行時の温度や湿度, 鋼板の表面の状態が異なるためと考えられる.
-一定の条件下において摩擦力を計測し, 旋回時に滑り落ち具合を決定できる指標を定めた.
-
-\subsection{実験用鋼板}
-試作機の動作実験を行うために, 運用を想定している鋼橋の桁部の壁面を模した実験用鋼板を用意した(図\ref{plate}).
-厚さは多くの鋼橋に用いられているのと同じ10[mm]であり, 運用を想定している鋼橋に多く用いられているA-5塗装系\cite{paint}の塗装がされている. 
-塗装は4層となっているが, 機体が接触する最外部の塗装は長油性フタル酸樹脂が主成分となっている. 
-塗膜厚の計測したところ, 約0.29～0.38[mm]であった.
-実際に運用を想定する鋼橋の塗膜は劣化しており, 実験用鋼板とは表面の性質が異なる可能性がある.
-
-\begin{table}[H]
-  \centering
-  \caption{Specification of experimental steel plate}
-  \begin{tabular}{r|c}
-    Height & 990[mm] \\
-    Width & 994 [mm] \\
-    Thickness & 10[mm] \\ 
-    Material & SS400 \\ 
-    Paint thickness(actual measurements) & 0.29～0.38
-  \end{tabular}
-  \label{specification_sp}
-\end{table}
-
-\begin{figure}[H]
-	\centering
-  \includegraphics[width=0.8\textwidth]{steel-plate.jpg}
-  \caption{Experimental steel plate}
-	\label{plate}
-\end{figure}
-
-\newpage
-
-\subsection{摩擦力の計測方法}
-  先述の実験により摩擦力は, 鋼板上の位置や試行，表面の状態によって大きく異なることが分かっていた．
-  そのため今回は，脱脂した鋼板の同じ位置で計測を行うことで条件を揃えた．
-
-  \subsubsection{機体及び履板の静止摩擦力の計測方法}
-  静止した機体及び履板をフォースゲージ（日本電産シンポ FGP-10）を用い下方向に滑りだすまで手で引っ張り, その時の最大値を計測した.
-  機体については10回の計測を行った. 履板については, 機体の履帯が接触していた面の中の6か所においてそれぞれ2回ずつ計測した.
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.35\textwidth]{track-shoe_static-friction.png}
-    \caption{Measurement of static friction of Experiment steel plate and track shoe}
-    \label{static-system}
-  \end{figure}
-
-  \subsubsection{機体の動摩擦力の計測方法}
-  図\ref{dynamic-system}のように機体をフォースゲージを介して実験用鋼板を固定しているフレームに固定し, 
-  上昇方向に履板を空転させ, 10[s]の間サンプリング周期0.1[s]で計測した.
-
-  \subsubsection{履板の動摩擦力の計測方法}
-  図\ref{shoe_dynamic-system}のように履板をフォースゲージを用いて一定の速度で引き下げ, 機体の摩擦を計測した時に履板が接触していた場所を通過させた.
-  サンプリング周期0.1[s]で計測した.
- 
-  \begin{figure}[H]
-    \begin{minipage}{0.5\hsize}
-      \centering
-      \includegraphics[width=0.7\textwidth]{dynamic-friction.png}
-      \caption{Measurement of dynamic friction of Experiment steel plate and robot}
-      \label{dynamic-system}
-    \end{minipage}
-    \begin{minipage}{0.5\hsize}
-      \centering
-      \includegraphics[width=0.7\textwidth]{track-shoe_dynamic-friction.png}
-      \caption{Measurement of dynamic friction of Experiment steel plate and track shoe}
-      \label{shoe_dynamic-system}
-    \end{minipage}
-  \end{figure}
-
-\newpage
-
-\subsection{結果}
-機体の摩擦力計測の結果を図\ref{kitai_friction}, 履板単体の摩擦力計測の結果を図\ref{riban_friction}のグラフに示す. 
-機体の摩擦力の値は計測値に機体の重力を加算したものとしている.
-フレーム磁石により, 摩擦力が大きく増加していることが確認できる.
-また, 動摩擦力は静止摩擦力より小さいことが確認できた.
-
-表\ref{friction}に結果の平均値を示す. 履板単体については, 壁面との接触履板の数(28[個])との積も記載した. また, この積に対する機体全体の摩擦力の割合も示す. 積に対して機体全体の摩擦力が低下している要因は, 機体の重力によるモーメント等によりそれぞれの履板と壁面の吸着力が一定でないことなどが考えられる.
-
-\begin{figure}[H]
-  \begin{minipage}{0.6\hsize}
-    \centering
-    \includegraphics[keepaspectratio,height=90mm]{kitai_friction.png}
-    \caption{Friction force with experimental steel panel half scale prototype}
-    \label{kitai_friction}
-  \end{minipage}
-  \begin{minipage}{0.4\hsize}
-    \centering
-    \includegraphics[keepaspectratio,height=90mm]{riban_friction.png}
-    \caption{Friction force between experimental steel panel and tack shoe}
-    \label{riban_friction}
-  \end{minipage}
-\end{figure}
+			これにより，理論上は研究目標である約2[m]の高さでの作業が可能である．
 
 
-\begin{table}[h]
-  \caption{Average of friction force}
-  \centering
-  \begin{tabular}{cccc|cc}
-              & \multicolumn{2}{c}{body} & track shoe & ratio of body  &\\ \cline{2-3}
-  body magnet & without      & with      & -          & and track shoe    &\\ \cline{1-5}
-  static      & \textbf{52} [N]       & 105 [N]   & 2.08 [N] * 28 $\approx$ \textbf{58} [N]   & \textbf{0.90} &\\
-  dynamic     & \textbf{34} [N]       & 99 [N]    & 1.54 [N] * 28 $\approx$ \textbf{43} [N]   & \textbf{0.79} &
-  \end{tabular}
-  \label{friction}
-\end{table}
+
+
+			%また，ワイヤは壁面と平行な状態で巻き取る必要があるため，プーリから直接レールに繋げることはできない．
+		
+			%よって，図 \ref{label5_2}のように補助プーリを，プーリより壁際でかつレールより垂直で真下の位置に配置する．
+			%これにより，巻き取る際にも常にワイヤは壁面と水平を維持することが可能である．
+			%また補助プーリはリニアブッシュを用いて横方向にも移動可能であるため，巻き取る際に溝に沿ってきれいに巻くことを補助する役割も担っている．
+
+
+    \begin{figure}[h]
+			\centering
+			% 画像
+			\begin{minipage}{0.19\linewidth}
+					\centering
+					\includegraphics[width=\linewidth]{puurisekkei.jpg}
+					\caption{Pulley design}
+					\label{label5}
+			\end{minipage}
+			\hspace{1mm} % 間隔を設定
+			% 表
+			\begin{minipage}{0.3\linewidth}
+					%\centering
+					\captionof{table}{Pulley specifications}
+					\begin{tabular}{cc} \hline
+						$d$ ：Pitch circle diameter & 58 [mm] \\
+						$D$ ：Pulley outer diameter & 78 [mm] \\
+						$n$ ：Number of grooves　 & 12 [本]\\
+						$a$ ：Wire diameter　　　 & 2 [mm] \\ \hline
+					\end{tabular}
+					\label{specification3}
+			\end{minipage}
+			\hspace{-5mm} % 間隔を設定
+			% 数式
+			\begin{minipage}{0.45\linewidth}
+				%\centering
+				\begin{itemize}
+					\item[]\mbox{}
+					\vspace{0mm}
+					\begin{equation}
+						L_{x} = （d + xa）π
+						%\label{eqn: eq1}
+					\end{equation}
+					\begin{equation}
+						D \geq d + x a
+						%\label{eqn: eq1}
+					\end{equation}
+					\begin{equation}
+						H_{MAX} = D π n
+						%\label{eqn: eq1}
+					\end{equation}
+	
+					%\centering
+					\hspace{12mm} $L_{x}$ \hspace{2mm} ： Pulley circumference
+					
+					\hspace{12.2mm} $x$ \hspace{3.6mm} ：  \hspace{0mm} Number of stages
+					
+					\hspace{9mm} $H_{MAX}$ \hspace{-1.8mm} ：  \hspace{0mm} Maximum movable height \hspace{1mm}
+					
+				\end{itemize}
+	
+			\end{minipage}
+		\end{figure}
+	
+  
+  	\subsubsection{レール固定方法の検討}
+
+
+		\subsubsection{塗膜除去機構の検討}
+
+
+	\subsection{機構の有意性}
 
 
 \newpage
 
-\subsection{超新地旋回に関する考察}
-\label{超新地旋回に関する考察}
-超信地旋回の動作は動摩擦力によるものであるため，
-動摩擦力を重量で除した比が徐々に滑り落ちるか否かの指標になると考えた．
-計測時の条件においては，フレーム磁石がない時に滑り落ちる動作が確認でき，
-フレーム磁石があるときには滑り落ちる動作は確認できなかった．
-よって, 先述の比がTable \ref{specification}, \ref{friction}より$99/(2.9*9.8)\approx3.5$以上であるとき, 
-つまり動摩擦力が重量の3.5倍以上であるときは滑り落ちずに旋回できると考えた．
-この比の変化による挙動は図\ref{friction3}に示すようになった. 
-また, 動摩擦力が大きすぎる場合は, スティックスリップ現象の発生, 
-旋回時の負荷の大幅な増加, それによる履板の著しい摩耗などの問題が懸念される. 
-このため, すべての旋回動作が問題なく行える範囲で適切な摩擦力を設定する必要がある.
+\section{製作機体}
 
-\begin{figure}[H]
+	\subsection{機体概要}
+		実際に使用されるIH塗膜剥離装置を搭載した機体の製作を行った．
+		吊り下げ機体を図 \ref{label3_1}に, 全体図を図 \ref{label3_2}に，諸元を表 \ref{specification1}に示す.
+
+		図 \ref{label3_1}に示すように，吊り下げ機体の外殻はアルミフレームで構成しているため，外部からの衝撃などからIH塗膜剥離装置やアクチュエータ類を保護することができる．
+
+		また，アクチュエータの配置も図 \ref{label3_1}の通りであり，全て吊り下げている機体内にまとめることが可能である．
+		IH塗膜剥離装置はヘッドの部分しか加熱できないため，このようなアクチュエータの配置にすることで機体の全幅を抑え，より効率良く加熱することが可能となる．
+
+		作業範囲については，図 \ref{label3_2}に示すようにレールやフレームに依存するが，取り外しが可能なため作業現場に合わせて範囲を拡大または縮小可能である．
+
+  \begin{figure}[h]
 	\centering
-  \includegraphics[width=1\textwidth]{friction-weight.png}
-  \caption{Relationship between the ratio of dynamic friction force to weight and robot motion}
-	\label{friction3}
+	% 画像1
+	\begin{minipage}{0.29\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{robotturisagebu.png}
+			\caption{Produced machine}
+			\label{label3_1}
+	\end{minipage}
+	\hspace{10mm} % 画像1と画像2の間のスペース
+	% 画像2
+	\begin{minipage}{0.34\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{robotzenntai1.png}
+			\caption{Overall diagram of the robot}
+			\label{label3_2}
+	\end{minipage}
+	\hspace{10mm} % 画像2と表の間のスペース
+	% 表
+	\begin{minipage}{0.33\linewidth}
+			\centering
+			\captionof{table}{Specification of machine}
+			\scalebox{1.2}{
+			\begin{tabular}{cc} \hline
+							Length & 693 [mm] \\
+							Width & 450 [mm] \\
+							Height & 215 [mm] \\
+							Weight & 40.3 [kg] \\ \hline
+			\end{tabular}
+			}
+			\label{specification1}
+	\end{minipage}
 \end{figure}
+
+
+  \subsection{ロボットと壁面間の距離調整}
+    IH塗膜剥離装置はIHヘッドが壁面に非接触な状態で加熱を行うが，十分な加熱を行うために壁面との適切な距離を常に一定に保つ必要がある．
+		また壁面を走行する際，重力と機体重量により壁面から剥がれる方向にモーメント力が発生する．
+		さらに，加熱後の塗膜は浮き上がるなど壁面の状態は一定ではないため，壁面との接触面積は可能な限り小さくする必要がある．
+
+		これらの条件をネジ式ボールキャスタとネオジム磁石を使用することで解決した．
+
+		壁面間距離を常に一定に保ち，かつ壁面との接触面積を小さくするため，ネジ式ボールキャスタをロボットの端４点に搭載した．
+		ネジ式であるため4点それぞれの高さをネジのピッチで調整し，機体と壁面の距離を適切に保つことが可能である．
+
+		そして壁面から剥がれる方向のモーメント力を打ち消すため，機体上部の2箇所に強力なネオジム磁石を壁面と非接触な状態で搭載した．
+		これにより磁力でモーメント力を打ち消すことが可能であり，かつ壁面と非接触であるため，本論文の機体構想にも記載した熱による磁力の低下も抑えることが可能である．
+
+		またワイヤを使用しているため，磁力が低下し吸着が不可となった場合でも落下の可能性は低いと考えられる．
+
+		磁石を付けていない状態の機体側面を図 \ref{label4_1}に, 磁石を付けた状態の機体側面をを図 \ref{label4_2}に，吸着時の壁面間距離を表 \ref{specification2}に示す.
+
+    \vspace{0mm}
+		\begin{figure}[h]
+			\centering
+			% 画像1
+			\begin{minipage}{0.26\linewidth}
+					\centering
+					\includegraphics[width=\linewidth]{zisyakunasi.JPG}
+					\caption{Side view of robot without magnet}
+					\label{label4_1}
+			\end{minipage}
+			\hspace{5mm} % 画像1と画像2の間のスペース
+			% 画像2
+			\begin{minipage}{0.27\linewidth}
+					\centering
+					\includegraphics[width=\linewidth]{zisyakuari.png}
+					\caption{Side of robot with magnet attached}
+					\label{label4_2}
+			\end{minipage}
+			\hspace{5mm} % 画像2と表の間のスペース
+			% 表
+			\begin{minipage}{0.3\linewidth}
+					\centering
+					\captionof{table}{Wall distance}
+					\scalebox{1.3}{
+					\begin{tabular}{c|c}
+							      & Wall distance \\ \hline
+										IH head & 3 [mm] \\
+										Magnet & 1 [mm] \\
+					\end{tabular}
+					}
+					\label{specification2}
+			\end{minipage}
+		\end{figure}
+
+
+	\subsection{レール固定部の構造}
+
+
+	\subsection{塗膜除去機構}
+
 
 \newpage
 
-\section{移動時における壁面とIHヘッド取り付け部の変位の計測}
-\label{displacement}
-\subsection{IHヘッドの取り付け方法}
-IH塗膜剥離においてIHヘッドユニットにはOリングとプーリーによる受動車輪が取り付けあり, 
-作業者はこれを壁に押し当て, IHヘッド取付部と壁面の距離を一定に保ちながら加熱を行うことができる.
-今回は旋回動作を伴うため, 車輪を用いる場合はオムニホイールに換装する必要がある.
-車輪を用いる場合はIHヘッドを壁面に押し付ける機構が必要となるが, 
-移動時における壁面とIHヘッド取り付け部の変位が許容できる範囲であれば, 車輪は不要となる.
-そこで, フレーム磁石によりレールの遊びによるIHヘッド部分の変位を軽減させることができると考えた.
-この案の有効性を検証するため, 移動時における壁面とIHヘッド取り付け部の変位の計測し, フレーム磁石の有無による変位を比較した.
+\section{機体の性能評価実験}
+  研究目標を達成しているかの評価実験を行う．
+	
+	製作機体より，加熱装置約12[kg]を搭載可能，加熱装置装置と壁面間の距離を一定に保つことが可能の2点は達成しているため，加熱は問題なく行うことができると考えられる．
+	よって，一定の速度で移動し作業することが可能であるか，また想定外の外力にも対応可能で安全性が確保されているかの2点に着目した評価実験を行う．
 
-\subsection{計測方法}
 
-実験用鋼板において上昇移動する際のIHヘッド取り付け部分の壁面との変位をレーザ変位センサを用いて計測した.
-12[s]の間一定の速度で上昇移動を行い, その時の変位をデータロガーを用いて記録した.
+  \subsection{加熱装置の移動実験}
+    加熱装置を搭載した状態での動作実験を行う．
+		
+		横方向1[m]，縦方向2[m]の作業範囲を動作することが可能であるか，また動作にかかる時間と速度の計測を行った．
+		横方向の移動でかかる時間は1[m]での計測だが，実験結果の表ではデータを合わせるため2倍の値としている．
 
-\begin{table}[h]
-  \centering
-  \caption{Detail of sensor}
-  \begin{tabular}{ccc}
-    Manufacturer & Product name & Model \\ \hline
-    KEYENCE & CMOS laser application sensor head & IL-S065 \\ 
-    KEYENCE & CMOS laser application Amplifier unit & IL-1000 \\ 
-    GRAPHTEC & midi LOGGER & GL900 \\ \hline 
-  \end{tabular}
-  \label{laser2}
-\end{table}
+	\vspace{1mm}
 
-\begin{figure}[H]
-	\centering
-  \includegraphics[width=0.8\textwidth]{laser.png}
-  \caption{half Scale prototype with laser displacement sensor}
-	\label{laser1}
-\end{figure}
 
-\newpage
+    \subsubsection{実験結果}
+      IH塗膜剥離装置を搭載した状態での動作は可能であった．
+		  得られたデータを表 \ref{data1}に示す.
+			
+		  表 \ref{data1}より，各方向別での移動速度に多少の差が見られた．とくに上昇時に大きな速度低下が見られた．
 
-\subsection{計測結果}
-図\ref{displacement_graph}, Table \ref{displacement}に計測結果を示す.
-フレーム磁石により大幅に変位が軽減できることが確認できた. 
-また, フレーム磁石がない時, 機体が剥離する方向に周期的な振動が発生していることが確認できた.
+		  人が作業を行う際には，約50[mm/s]の速度で作業を行うことができるため，ロボットの速度を調整する必要がある．
 
-\begin{figure}[H]
-	\centering
-  \includegraphics[width=1\textwidth]{distance.png}
-  \caption{Comparison of displacement during wall running with and without body magnet}
-	\label{displacement_graph}
-\end{figure}
+		
+      \vspace{-2mm}
+	  \begin{table}[h]
+			\centering
+			\caption{Operation experiment results}
+			\scalebox{1.0}{
+		  \begin{tabular}{c|cccc}
+          & Rise     & Descent   & Lateral movement on top         & Lateral movement at the bottom   \\ \hline
+					Speed       & 30.58 [mm/s]        & 40.00 [mm/s]        & 34.61 [mm/s]                    & 37.50 [mm/s]        \\
+					Time        & 65.38 [t]           & 50.00 [t]           & 57.77 [t]                       & 53.33 [t]        \\
+		  \end{tabular}
+		  }
+		  \label{data1}
+	  \end{table}
 
-\begin{table}[H]
-  \caption{Displacement during wall running}
-  \centering
-  \begin{tabular}{ccc}
-  body magnet          & without       & with          \\ \hline
-  Maximum displacement & 0.42 [mm]     & 0.16 [mm]
-  \end{tabular}
-  \label{displacement_table}
-\end{table}
+	  \vspace{-2mm}
+  
 
-\subsection{考察}
-\label{displacement_think}
-フレーム磁石は, 車輪を用いずに加熱を行うにあたり有効であることが確認できた.
-4.89～10.65[s]の周期的な振動の周期の平均は, 0.36[s]であった. 
-これは機体の上昇移動速度から求められる履板が壁面に張り付く周期と概ね一致していた.
-レールとピンに遊びがないと仮定した場合, 履板が壁面に張り付く際, 履板の角がすでに壁面に接触している履帯よりも壁面方向に飛び出ることが幾何学的に分かる (図\ref{geometry}).
-レールとピンに遊びがあるため, すでに壁面に接触している履板が剥がれることなく, 機体が剥がれる方向に変位していると考えられる. これが振動の原因となっていることが考えられる.
-この振動も, フレーム磁石及びレールとピンの適度な遊びにより軽減することができることが確認できた.
 
-\begin{figure}[H]
-	\centering
-  \includegraphics[width=0.8\textwidth]{geometry.png}
-  \caption{Geometric relationship between wall and track shoe}
-	\label{geometry}
-\end{figure}
+    \subsubsection{考察}
+      実験結果より，移動速度に多少の差があり，とくに上昇時に大きな速度低下が見られた．
+			これは，上昇時には巻き取りの影響により機体が傾くため，その補正を行いながら移動する必要があるからだと考えられる．
 
-\newpage
+			また全体的に移動速度が遅い原因は，このロボットはコントローラで人の手による動作だからだと考えられる．
 
-\section{自律動作の検討}
-橋梁のI字鋼の一面の塗膜加熱を自律動作で行うことが求められている. 
-図\ref{auto2}に示すルートで自律動作を行うことを検討した.
-実際の現場では作業員がスクレーバーを用い塗膜の剥離を行い, 主機へとつながるホースの取り回しを作業員が行うため, 
-作業員の操作により一時停止及び再開できるようにする必要がある.
+	\subsection{レール固定部耐久実験}
+	
+  \subsection{電流値計測試験}
+    ロボットの十分な安全性を評価するため，電流値計測試験を行う．
 
-\begin{figure}[H]
-	\centering
-  \includegraphics[width=0.8\textwidth]{auto2.jpg}
-  \caption{Route of robot}
-	\label{auto2}
-\end{figure}
+		ロボットの安全性評価にはさまざまな内容があるが，本研究のロボットは4本のワイヤで吊り下げているため，それぞれのワイヤにかかっている負荷を計測する．
+		ワイヤの張力を計測する必要があるが，ワイヤの張力は直接モータの負荷となるため，モータに流れる電流値から計測可能である．
 
-\subsection{1/2スケール試作機による自律動作の実験}
-\label{1/2auto}
-姿勢を制御するためのIMUと端部を検出するための距離センサーを用いた自律動作を実装した. IMUから得られる加速度と角速度から姿勢(地面に対する機体の角度)を検出するために\cite{moon}のサンプルプログラムを用いた. 
-使用したセンサを図\ref{sensor}に示す.
-動作の様子を図\ref{auto}に示す.
+		実験を行うにあたり，各モータを番号付けする必要がある．
+		図 \ref{label2_1}で表すと，左右プーリの左側が1，右側が2，上下プーリの左側が3，右側が4として番号付けしている．
+		また動作は停止状態から上昇，下降，上昇，左側移動，右側移動の順で行っている．
 
-\begin{table}[htb]
-  \centering
-  \caption{specification of sensor}
-  \begin{tabular}{ccc}
-    Manufacturer & Product name & Model \\ \hline
-    BOSCH & Absolute orientation sensor & BMX055 \\ 
-    SHARP & Distance Measuring Sensor Unit & GP2Y0A21YK0F \\ \hline
-    \label{sensor} 
-  \end{tabular}
-\end{table}
+	\vspace{1mm}
 
-\begin{figure}[H]
-	\centering
-  \includegraphics[width=0.9\textwidth]{auto.png}
-  \caption{Autonomous drive of half scale prototype}
-	\label{auto}
-\end{figure}
+
+    \subsubsection{実験結果}
+      実験結果としては，主に左右プーリのモータと上下プーリのモータで電流値の変化が分かれた．
+		  また各動作ごとでも電流値に変化が見られた．
+		  得られたデータを図 \ref{label6}に示す.
+
+		  上昇時には全てのモータに大きな電流が流れたが，特に上下プーリのモータに負荷が見られた．
+		  下降時は基本どのモータも流れる電流はとても少なかった．
+		  左右移動時はそれぞれのモータの負荷に変化があった．
+		  上下プーリのモータは進行方向側のモータには大きな電流が流れ，反対側のモータに流れる電流は少なかった．
+		  これは進行方向によって対照的な変化が見られた．
+		  また左右プーリのモータは進行方向に関わらず，ほとんど電流は流れなかった．
+
+      \vspace{-1mm}
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=1.0\textwidth]{zikkenn2.png}
+			\vspace{-2mm}
+			\caption{Current value measurement results}
+			\label{label6}
+		\end{figure}
+
+	  \vspace{-3mm}
+
+
+    \subsubsection{考察}
+      実験結果より，上昇時に全てのモータに大きな電流が流れた理由はロボットの重量によるものであると考えられる．
+		  上下プーリ用モータと左右プーリ用モータで電流値が変わってきた理由は，左右プーリの方がワイヤを多く巻き出しているからだと考えられる．
+		  これにより全てのプーリを同じ速度で巻き取ると，プーリの周長が変わっているため巻き取り量が少なくなってしまい，負荷が減るのではないかと考えられる．
+
+		  下降時は機体重量が移動のサポートをするため，流れる電流が少なくなるのだと考えられる．
+
+		  左右移動時に全てのモータの電流値が変化する理由は，本研究のロボットは上下プーリ用モータで基本姿勢を維持するため，片側が巻き取られると姿勢維持しているプーリに負荷がかかるからだと考えられる．
+		  また左右移動用のプーリに負荷がかからなかった理由は，上記と同様で基本姿勢維持は上下プーリで行っているからだと考えられる．
+
+		  全体的に見て電流値に違いはあるが，それぞれ対照に負荷がかかっており偏りがないため，安全であると考えられる．
+	
+
+  \subsection{ワイヤ破断試験}
+    壁面移動ロボットにおいて安全性を証明するには，想定外の外力にも対応可能である必要がある．
+		機体構想でも記載した通り，本研究のロボットはいずれかのワイヤが破断しても落下することはないと考えられる．
+		よって実際にワイヤを取り外す実験を行う．
+
+		実際に破断させることは難しいため，この実験ではワイヤの拘束を解除することで代用している．
+
+		全てのワイヤを1本ずつ拘束を解除し，ロボットの位置の変化を計測する．
+		計測は拘束解除後10[s]の状態で行う
+		
+		また本研究のロボットは上下プーリ用ワイヤか左右プーリ用ワイヤのどちらかが2本切れた場合も落下しないと予想できる．
+		こちらの実験も同様に行う．
+
+
+    \subsubsection{実験結果}
+      実験の結果, 構想段階での予想通り，いずれのワイヤが破断しても落下することはなかった．
+		  また上下プーリ用ワイヤか左右プーリ用ワイヤのどちらかが2本破断した場合の実験でも同様に落下することはなかった．
+
+		  詳しい状態としては，上下プーリの右側のワイヤを破断させた場合，機体が外した側に傾いたがその場から位置がずれることは無かった．
+		  上下プーリの左側のワイヤを破断させた場合も同様である．
+
+		  左右プーリの右側のワイヤを破断させた場合，外した側と反対方向に機体の位置が横ずれを起こしたが，機体が傾くなどは無かった．
+		  こちらも，反対側でも同様の状態となった．
+
+		  また，上下プーリの両側のワイヤを破断させた場合と，左右プーリの両側のワイヤを破断させた場合は，どちらも機体の姿勢や位置に変化はなかった．
+
+		  上下プーリの右側のワイヤを破断させた状態を図 \ref{label7_1}に，左右プーリの右側のワイヤを破断させた状態を図 \ref{label7_2}に，
+		  上下プーリの両側のワイヤを破断させた状態を図 \ref{label7_3}に，左右プーリの両側のワイヤを破断させた状態を図 \ref{label7_4}に示す.
+
+      \begin{figure}[H]
+			\centering
+			% 画像1
+			\begin{minipage}{0.2\linewidth}
+					\centering
+					\includegraphics[width=1.0\linewidth]{zikkenn3_1.png}
+					\caption{Wire breakage condition 1}
+					\label{label7_1}
+			\end{minipage}
+			\hspace{5mm} % 画像1と画像2の間のスペース
+			% 画像2
+			\begin{minipage}{0.2\linewidth}
+					\centering
+					\includegraphics[width=0.92\linewidth]{zikkenn3_2.png}
+					\caption{Wire breakage condition 2}
+					\label{label7_2}
+			\end{minipage}
+			\hspace{5mm} % 画像1と画像2の間のスペース
+			\begin{minipage}{0.2\linewidth}
+				\centering
+				\includegraphics[width=1.0\linewidth]{zikkenn3_3.png}
+				\caption{Wire breakage condition 3}
+				\label{label7_3}
+			\end{minipage}
+			\hspace{5mm} % 画像1と画像2の間のスペース
+			% 画像2
+			\begin{minipage}{0.2\linewidth}
+					\centering
+					\includegraphics[width=1.0\linewidth]{zikkenn3_4.png}
+					\caption{Wire breakage condition 4}
+					\label{label7_4}
+			\end{minipage}
+
+		\end{figure}
+
+
+    \subsubsection{考察}
+      実験結果より，上下プーリの片側のワイヤを破断させて機体が把持した側に傾いた理由としては，上下プーリが主体でロボットを支えており姿勢維持を担っているため，片側が破断するとバランスを崩すからだと考えられる．
+
+		  左右プーリの片側のワイヤを破断させて機体が反対側に位置ずれした理由としては，上下プーリで姿勢維持をしているが，左右に引っ張る力のバランスが崩れたからだと考えられる．
+
+		  上下と左右のプーリの両側を破断させた場合に機体が位置ずれも傾きも起こらなかった理由としては，破断後も左右対称であるため均等に機体の荷重を支えることができているからだと考えられる．
+
+		  この結果により，安全性が証明されたと言える．

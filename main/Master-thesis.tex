@@ -1,4 +1,4 @@
-\documentclass[11pt,dvipdfmx]{jsarticle}
+\documentclass[11pt,dvipdfmx]{jarticle}
 \usepackage{amsmath,amsfonts}
 \usepackage{titlesec}
 \usepackage{graphicx}
@@ -14,6 +14,16 @@
 \usepackage{siunitx}
 
 \usepackage[final]{pdfpages}
+
+\usepackage{bm}
+\usepackage[superscript]{cite}
+\usepackage{enumerate}
+\usepackage{subfigure}
+\usepackage{caption}
+%\usepackage{fancyhdr} % フッター・ヘッダーを整えるパッケージ
+%\usepackage{geometry} % ページ余白を調整するため
+%\usepackage[dvipdfmx]{graphicx}
+%\usepackage{robomech}
 
 %\lhead{}%ヘッダ左上を空白化
 \graphicspath{{../fig/}}%\includegraphicsのファイル名省略用
@@ -72,16 +82,16 @@
     \vspace{5mm}
     {\Large 修士学位論文}\\
 		\vspace{65mm}
-    {\huge 鋼橋の塗膜剥離支援を行う\\\vspace{2mm}磁気クローラ式壁面移動ロボットの開発}
+    {\huge IH式加熱装置を搭載した\\\vspace{2mm}鋼橋壁面塗膜除去ロボットの開発}\\
     \vspace{3mm}
-    {\Large Development of Wall Locomotion Robot with Magnetic Crawlers to Support Paint Removal of Steel Bridges}\\
+    {\Large Development of a robot equipped with an induction heater for removing paint from steel bridge walls}\\
     \vspace{65mm}
-		{\Large 2023年3月}\\
+		{\Large 2026年3月}\\
     \vspace{10mm}
     {\Large 所属：未来ロボティクス専攻}\\
     \vspace{5mm}
-    {\Large 学生番号: 21S1001}\\
-    {\Large 氏名：青木 朝啓}\\
+    {\Large 学生番号: 24S1004}\\
+    {\Large 氏名：伊藤 優真}\\
     \vspace{5mm}
     {\Large 指導教員：米田 完 教授}
     
@@ -126,8 +136,10 @@
 \input  {include/chapter02}
 %第3章
 \input  {include/chapter03}
-
+%第4章
 \input  {include/chapter04}
+%第5章
+\input  {include/chapter05}
 
 %参考文献
 \input  {include/bibliography}

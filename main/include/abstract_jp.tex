@@ -1,26 +1,48 @@
 ﻿　%←スペース用全角スペース()
-\vspace{20mm}
+\vspace{70mm}
 \renewcommand{\abstractname}{\LARGE 要旨}
 \begin{abstract}
   \vspace{3mm}
-  本研究では鋼橋のメンテナンスにおける塗膜剥離作業のIH装置による加熱工程を担う磁気クローラ式壁面移動ロボットの開発を行う．
-  鋼製の橋は防食性能を維持するために定期的な塗装の塗り替えが必要である. その際, 新たに塗装を行う前に劣化した既存の塗料を除去することが重要である. 現在, 塗膜剥離の方法の一つにIH（電磁誘導加熱）によるものがある. しかし, IHの装置は約12kgと重く, それを保持し操作する作業員の負担の軽減が求められている. そこで, 鋼橋の壁面を磁気クローラで吸着し, IHの装置を自動で移動させることができる壁面移動ロボットの開発した. 磁気クローラは, 履板に設けたピンをレールに沿わせることにより壁面に垂直方向の剛性を持たせる方式を採用している. これは先行研究を参考にした同様の仕組みだが, アキシアル荷重を受けることができる摺動面を設けることにより先行研究では論じられていない旋回動作を考慮した構造としている. 1/2スケールの試作機を製作し, 動作実験・検証を行い, IMUを用いた自律移動の実装も行った. これによって得られた知見をもとにフルスケールサイズの機体の設計製作行った. そして, 実際の橋梁に使用されているものと同様の試験桁において塗膜剥離試験を行い, その有用性を示すとともに課題を明らかにした.
+
+  本研究では鋼橋のメンテナンスの一環で塗膜の塗替えをする際に重要である，古い塗膜の除去作業を行う伸縮型壁面塗膜除去ロボットの開発を行う．
+  鋼製の橋は腐食による劣化を防止するために塗装がされており，防食性能を維持するためには定期的な塗装の塗替えが必要となる．
+  その際，新たな塗装を行う前に劣化した古い塗装を除去しなければならない．
+  古い塗装の除去を行う工法としてIH式塗膜剥離工法というものがある．
+  古い塗装は加熱することで界面破壊をおこし浮き上がるため，浮き上がった塗装をスクレーパなどを使用して除去する工法である．
+  この工法で使用されるIH式の加熱装置は約12kgと重く，これを壁面に押し当てて作業をするため，作業員にとって大きな負担となる．
+  さらに橋脚は広範囲であり長期的な作業となるため，作業員の負担が増えるだけでなく，時間に対する工法の質の低下にも繋がる．
+  そこで，加熱装置を鋼橋の壁面に押し当てた状態で壁面上の任意の位置に移動させ，塗装の加熱が可能なロボットの開発を行った．
+  また，今回開発したロボットは界面破壊をおこし浮き上がった塗装を除去する機構も搭載している．
+  塗装の加熱を行うロボットは先行研究にも存在するが，加熱から除去までの一連の動作を行うロボットは存在しないため，本研究の成果により大幅な作業効率の向上が期待できる．
+  本研究ではさまざまな形式の橋脚に対応するため，2種類のロボットを開発した．
+  1つ目は高さのある橋脚に適したワイヤー吊り下げ式のロボット，2つ目は横方向に長い橋脚に適した伸縮型床面走行式のロボットである．
+  それぞれのロボットの移動性能，塗膜剥離性能について評価を行った．
+  また，実際の橋梁に使用されているものと同様の試験桁で塗膜剥離実験を行い，IH式塗膜剥離工法における有用性を示した．
+
 \end{abstract}
 
-\vspace{20mm}
+\newpage
+
+\vspace{120mm}
 \renewcommand{\abstractname}{\LARGE Abstract}
 \begin {abstract}
-  In this study, a magnetic crawler-type wall locomotion robot is developed to perform the heating process by IH equipment in the coating removal process in the maintenance of steel bridges.
-  Steel bridges require regular repainting to prevent corrosion. 
-  When repainting, it is important to remove the deteriorated existing paint before applying new paint. 
-  Currently, one method of coating removal is through IH (induction heating).
-  However, IH devices are heavy, approximately 12kg, and there is a need to reduce the burden on the workers who operate and hold them.
-  Therefore, a wall locomotion robot that can automatically move the IH device by adhering the steel bridge wall surface with a magnetic crawler has been developed.
-  The magnetic crawlers are designed to provide vertical rigidity to the wall surface by aligning the pins on the track with the rails. 
-  This is a similar mechanism based on previous studies, but by providing a sliding surface that can withstand axial loads, it is a structure that considers turning movement not discussed in previous studies. 
-  A half scale prototype was produced and operation experiments and verification were conducted, and autonomous movement using IMU was also implemented.
-  Based on the knowledge obtained, the design and production of a full scale robo was carried out.
-  Then, The results of the peeling tests on the test girders similar to those used in actual steel bridges show the usefulness of the method and clarify the issues involved.
+  \vspace{3mm}
 
-  \end {abstract}
+  This research develops an extendable wall coating removal robot for the critical task of removing old coatings during repainting as part of steel bridge maintenance.
+Steel bridges are coated to prevent deterioration from corrosion, and regular repainting is necessary to maintain their anti-corrosion performance.
+Before applying new paint, the deteriorated old coating must be removed.
+  One method for removing old paint is the IH-type coating stripping method.
+This method involves heating the old coating to cause interfacial disruption and lifting. The lifted coating is then removed using tools like scrapers.
+  The IH heating device used in this method weighs approximately 12 kg. Pressing it against the wall surface during operation places a significant burden on workers.
+Furthermore, since bridge piers cover a large area and require long-term work, this not only increases worker strain but also leads to a decline in the quality of the method over time.
+Therefore, we developed a robot capable of moving the heating device to any position on the wall surface while pressed against it, enabling coating heating.
+  Additionally, the newly developed robot incorporates a mechanism to remove lifted paint caused by interfacial disruption.
+While robots for heating paint exist in prior research, no robot performs the entire sequence from heating to removal. Consequently, the results of this research are expected to significantly improve work efficiency.
+To accommodate various bridge pier configurations, two types of robots were developed in this research.
+  The first is a wire-suspended robot suitable for tall piers. The second is an extendable floor-running robot suitable for piers that are long in the lateral direction.
+The mobility and coating removal performance of each robot were evaluated.
+Furthermore, coating removal experiments were conducted on test girders identical to those used in actual bridges, demonstrating the usefulness of the IH-type coating removal method.
+
+
+\end {abstract}
 

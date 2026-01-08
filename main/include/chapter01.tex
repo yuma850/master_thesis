@@ -1,128 +1,175 @@
 %第1章
+\newpage
 \part{序論}
 \label{zyoron}
 
-\section {鋼橋におけるIH塗膜剥離と自動化}
-\subsection{研究背景}
+\section {日本の鋼橋と塗膜剥離工法}
+	%\subsection{研究背景}
 
-鋼橋とは, 鋼製の橋である. 
-日本の鋼橋は,道路橋は15[m]以上のものだけでも約6万橋, 鉄道橋は4万橋存在する(2011年時点)\cite{koukyou}.
-鋼橋の主な損傷要因は腐食と疲労であるため, 腐食を防止するための塗装がされている.
-防食性能を維持するためには, 定期的な塗装の塗り替えが必要である.
-新しい塗装を行う前に劣化した旧塗膜を剥離することが, 防食性能を高めるうえで重要である.
-塗膜剥離方法としてに, ブラストや塗膜剥離剤を用いた工法が挙げられるが, 
-これらは騒音, 粉じんの発生, 廃材処理などの課題がある. 
-そこで, 前述の課題を解消したIH（電磁誘導加熱）よる塗膜剥離が普及し始めている.
+	日本には多くの鋼橋が存在する.
+	道路橋は15[m]以上のものだけでも約6万橋, 鉄道橋は4万橋存在する(2011年時点)\cite{koukyou}.
+	鋼橋は腐食や経年劣化により損傷を起こすため，表面に塗装を施すことで防いでいる．
+	防食性能を維持するには定期的な塗装の塗り替えが必要だが，塗装前に劣化した塗膜を剥離させなければならない．
+	塗膜を剥離させる方法として，高圧の空気で研削材を噴射して塗装を剥がす塗膜剥離ブラストや塗膜剥離剤を用いた工法が挙げられる．
+	しかし，塗膜剥離ブラストは騒音や粉塵の問題があり\cite{burasuto}，塗膜剥離剤には臭気や有害化学物質（ベンジルアルコールやジクロロメタンなど）が発生する物もあるなど\cite{hakurizai}，いずれも作業員の人体に影響を与えることが多い．
+	近年ではそのような問題を解決するため，IH式塗膜剥離工法が普及し始めている．
 
-IHによる塗膜剥離の手順を述べる.
-まず, 図\ref{fig:ih}における加熱ヘッド及びヘッドユニット（以下IHヘッド）を作業者が移動させることにより加熱を行う.
-次に, 加熱により界面破壊を起こした塗膜を鋼板からスクレーパにより剥離する.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.65\textwidth]{about-ih.png}
-	\caption{Overview of the induction heating paint removal\cite{ih-group}}
-	\label{fig:ih}
-\end{figure}
+	\subsection{IH式塗膜剥離工法}
+		IH式塗膜剥離工法とは，鋼板を加熱することで塗装と鋼板面の接着が緩まり，塗膜を容易に剥離・除去することが可能になる工法である\cite{IHkouhou}
+		鋼板の加熱にはIH（電磁誘導加熱）装置システムを使用しており，電磁誘導により加熱を行う．
+		IH装置システムとは，ノルウェーのRPRテクノロジー社が開発した高周波誘導加熱塗膜除去装置「RPR1650システム」\cite{RPR1650}と日本橋梁株式会社が製作した「冷却水供給ユニット」を組み合わせたシステムである．\cite{IHsouchi}
+		システムの構成図を図 \ref{IHsouchikousei}に示す．
 
-共同研究先の日本橋梁株式会社は, ノルウェーのRPR Technologiesが開発した「RPR1650システム」に, 冷却水供給ユニットを組み合わせたIH装置システムを運用している. \cite{ih-catalog}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\textwidth]{ih-system.png}
+		\caption{System diagram of the induction heating paint removal\cite{IHsouchi}}
+		\label{IHsouchikousei}
+	\end{figure}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\textwidth]{ih-system.png}
-  \caption{System diagram of the induction heating paint removal\cite{ih-catalog}}
-	\label{fig:ih2}
-\end{figure}
+		工法の手順としては，まず図\ref{IHsouchikousei}におけるインダクションヘッドとハンドヘルドトランスフォーマー組み合わせたもの（以下加熱装置）を作業者が移動させることで，塗装の加熱を行う．
+		加熱することで塗装が界面破壊をおこし，浮き上がった塗膜にスクレーパを差し込むことで，塗膜の除去が可能となる．
+		IH式塗膜剥離工法の図 \ref{IHkouhou}に示す.
+		
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\textwidth]{IHkouhougaiyou.png}
+		\caption{Overview of the induction heating paint removal}
+		\label{IHkouhou}
+	\end{figure}
+
+	\subsection{工法の課題点}
+		IH式塗膜剥離工法は従来の塗膜剥離工法に比べ，騒音や粉塵，臭気などの発生が少なく，作業環境の改善に寄与する．
+		しかし，加熱装置はコンデンサーボックスを除いた状態で約15kgほどあり，作業者はそれを手動で移動させる必要がある．
+		鋼橋は，形式にもよるが作業範囲が広いため基本長時間の作業であり，さらに高いところを加熱する際は装置を頭上に持ち上げた状態で維持しなければならないため，作業員には非常に負担のかかる作業となっている．
+		また，作業者の技量によって加熱速度や加熱ムラが発生したり，スクレーパの使い方による塗膜除去の品質にばらつきが出ることも課題である．
+		重量物を用いた作業や長時間一定動作を繰り返す作業などは，機械が得意とする内容であるため，工法の機械化が望まれている．
+		作業員が行っている作業の様子を以下の図\ref{zinnrikisagyou}に示す．
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\textwidth]{ih-work.png}
+  	\caption{Work of the induction heating paint removal\cite{ih-catalog}}
+		\label{zinnrikisagyou}
+	\end{figure}
+
+	\subsection{研究目的}
+		IH式塗膜剥離工法では，機械による加熱装置の壁面移動と加熱後の塗装の除去が求められている．
+		そこで本研究では，加熱装置を搭載した状態で鋼橋の壁面を移動可能であり，かつ塗装の除去を行うことが可能なロボットの開発による，作業員の身体的負担の軽減を目的とする．
+		本研究は日本橋梁株式会社（以下日本橋梁）との共同研究である．
+
 
 \newpage
 
-実際の作業の様子を以下の図に示す.
-IHヘッドの質量はケーブルを含め標準的なもので約12[kg]あり, これを上下に移動させる作業者の大きな負担となっている.
-IHヘッドの移動を自動化し作業者の負担を軽減することが求められている.
+\section{現場環境とこれまでの取り組み}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.8\textwidth]{ih-work.png}
-  \caption{Work of the induction heating paint removal\cite{ih-catalog}}
-	\label{fig:ih3}
-\end{figure}
+	\subsection{鋼橋の種類と現場環境}
+		鋼橋は形式によって塗装対象となる構造部材や作業環境が大きく異なる。
+		例えば、トラス橋や斜張橋に代表される高さ方向に規模のある鋼橋では、鋼製橋脚や主塔、トラス部材など、鉛直方向に広範囲な塗装面を有する。
+		一方、プレートガーダ橋（I桁橋・箱桁橋）に代表される横方向に長い鋼橋では、主に鋼桁下面を中心とした水平方向に広がる塗装面が対象となる。
+		このように、鋼橋の形式によって塗装面の分布や作業姿勢が異なるため、塗膜除去作業の効率化には橋梁形式に応じた機構設計が求められる。
+		それぞれの橋の構造を以下の図\ref{bridge_types}に示す。
 
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\textwidth]{bridge_types.png}
+  	\caption{Work of the induction heating paint removal\cite{koukyousyurui}}
+		\label{bridge_types}
+	\end{figure}
 
-\subsection{研究目的}
-
-本研究の目的は,  
-IHヘッドを搭載し,鋼橋の壁面を自走しながら塗膜を加熱するロボットの開発を行うことである.
-本研究は日本橋梁株式会社（以下日本橋梁）との共同研究である.
-
-\subsection{研究目標}
-\label{goal}
-以下に示す日本橋梁からの要望である設計要件満たしつつ，実際のIHヘッドを搭載し加熱を行う塗膜剥離試験において塗膜剥離に必要な過熱を行うことのできるロボットを設計製作することを研究目標とする．
-
-
-\begin{comment}
-	\begin{enumerate}
-	%\item 安全性と効率を両立する
-	\item 端部を検知して停止する
-		IMU及び距離センサを用いた自律動作を行う．
-	\item 半自動で塗膜剥離を行える
-	\item 2人で運搬できるようにする
-	\item 約0.05[m/s]で加熱を行う
-	\item 加熱は縦方向に行う
-\end{enumerate}
-
-以下の方法でこの目標を達成する.\\
-%1. 永久磁石を用いた吸着により安全性を確保する.\\
-1, 2. IMU及び距離センサを用いた自律動作を行う.\\
-3. 
-
-
-\end{comment}
-
-以下に設計要件とその達成方法を述べる．
-
-\begin{description}
-	\item[端部検出による停止]\mbox{}\\
-	距離センサを用い端部検出を行う．
-	\item[半自動過熱]\mbox{}\\
-	MU及び距離センサを用いた自律動作を行う.
-	\item[2人で運搬可能]\mbox{}\\
-	厚生労働省による「職場における腰痛予防対策指針」\cite{youtuu}を踏まえ, 機体の質量を60[kg]未満とする.
-	\item[約0.05 m/sで加熱]\mbox{}\\
-	これを達成可能なモータの選定及び減速装置，クローラの設計を行う．
-\end{description}
 
 \newpage
-
-\section{先行研究}
-
-\subsection{Vertical \& Horizontal Robotics\cite{rpr-robot}}
-
-本研究でも使用するIH塗膜剥離装置の開発元であるRPR Technologiesが提案するロボットである.
-貯蔵タンクに磁石で吸着し, IHヘッドを自動で移動させ加熱することができる.
-機体が大型であるため, 本研究が目的とする橋梁の塗膜剥離作業に運用することは難しい.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.5\textwidth]{rpr-robot.jpg}
-  \caption{Vertical \& Horizontal Robotics\cite{rpr-robot}}
-	\label{fig:ih4}
-\end{figure}
-
-\subsection{磁気クローラ式吸着移動ロボット\cite{magnetic-clawlar}～\cite{magnetic-clawlar3}}
-
-日立製作所の内藤らが開発した磁気クローラを用いた壁面移動ロボットである. 
-磁石辺の個数に比例した吸着力をもつ負荷分散クローラを提案している.
-本研究において必要である旋回動作については論じられていない. 
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.5\textwidth]{hitachi.jpg}
-  \caption{Wall Surface Robot with Magnetic Crawlers\cite{magnetic-clawlar3}}
-	\label{fig:ih5}
-\end{figure}
+	\subsection{先行研究}
+		これまで行われてきた研究では，基本的にロボットが装置を搭載した状態で壁面に吸着・移動する方式で，壁面の加熱のみを行うロボットが開発されてきた．
+		塗膜除去まで行い，工法の一連の作業を行う研究は行われていない．
+		以下に代表的な先行研究を示す．
 
 
-%\subsection{磁気クローラロボット}\cite{magnetic-clawlar}
+		\subsubsection{Vertical \& Horizontal Robotics\cite{rpr-robot}}
+			本研究でも使用するIH塗膜剥離装置の開発元であるRPR Technologiesが提案するロボットである.
+			貯蔵タンクに磁石で吸着し, IHヘッドを自動で移動させ加熱することができる.
+			機体が大型であるため, 本研究が目的とする橋梁の塗膜剥離作業に運用することは難しい.
 
-%ダイヤ電子応用株式会社のホームページに記載のあった磁気クローラロボットである. 
-%詳細は不明なため, 調査中である.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.5\textwidth]{rpr-robot.jpg}
+  		\caption{Vertical \& Horizontal Robotics\cite{rpr-robot}}
+			\label{fig:ih4}
+		\end{figure}
+
+		\subsection{メカナムホイール式壁面走行ロボット\cite{mekanamu-kyuuchyaku}}
+			米田研究室 綱川が開発したメカナムホイールを用いた壁面移動ロボットである．
+			壁面吸着には磁石を使用しており，メカナムホイールを用いる事で壁面上での全方向移動が可能となっている．
+			
+			壁面に吸着し移動するため作業範囲に制限がなく，橋脚のような高所での作業に適している．
+			しかし壁面に対して接地線が4つのみであるため，障害物に対して弱く落下の危険性がある．
+
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.5\textwidth]{hitachi.jpg}
+  		\caption{Wall Surface Robot with Magnetic Crawlers\cite{magnetic-clawlar3}}
+			\label{fig:ih5}
+		\end{figure}
+
+\newpage
+		\subsubsection{磁気クローラ式吸着移動ロボット\cite{magnetic-clawlar}～\cite{magnetic-clawlar3}}
+			米田研究室　青木が開発した磁気クローラを用いた壁面移動ロボットである.
+			壁面吸着には磁石を使用しており，各履板全てに磁石を配置することで高い吸着力を実現している．
+			
+			こちらの機体も壁面に吸着し移動するため作業範囲に制限がなく，橋脚のような高所での作業に適している．
+			しかし，横移動には必ず旋回動作が必要となるが，吸着力の高さとクローラの性質上浮き上がった塗膜に影響が出る可能性がある．
+			
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.5\textwidth]{hitachi.jpg}
+  		\caption{Wall Surface Robot with Magnetic Crawlers\cite{magnetic-clawlar3}}
+			\label{fig:ih5}
+		\end{figure}
+		
+	
+	\subsection{研究目標}
+	\label{goal}
+		研究目的である作業員の身体的負担の軽減を達成するには，塗装の加熱から除去までの一連の動作をロボットが行う必要がある．
+		また先行研究での課題点も踏まえ以下の目標を設定する．
+
+	\begin{description}
+		\item[塗装の加熱から除去までの一連の動作が可能]\mbox{}\\
+		\vspace{-3mm}
+		\item[高さのある橋脚上での作業が可能]\mbox{}\\
+		\vspace{-3mm}
+		\item[横方向に長い桁上での効率的な作業が可能]\mbox{}\\
+		\vspace{-3mm}
+		\item[塗装の状態に影響されない，かつ塗装の状態に影響をあたえない，かつ落下の危険性が低い移動が可能]\mbox{}\\
+	\end{description}
+
+	\vspace{-5mm}
+		また共同研究先の日本橋梁から以下の要望もあるため，これらも達成すべき研究目標とする．
+
+	\begin{description}
+		\item[安全性と効率を両立する]\mbox{}\\
+		\vspace{-3mm}
+		\item[端部検出による停止]\mbox{}\\
+		\vspace{-3mm}
+		\item[半自動で塗膜剥離が可能]\mbox{}\\
+		\vspace{-3mm}
+		\item[2人で運搬可能]\mbox{}\\
+		\vspace{-3mm}
+		\item[約0.05 m/sで加熱しながら移動]\mbox{}\\
+	\end{description}
+
+\section{本論文の構成}
+	本論文は以下の構成で記述する．
+	本研究の目標である安全性と効率の両立を，高さのある橋脚と横方向に長い桁上の両方の環境で達成することは困難であると考えた．
+	そこで本研究では，それぞれの環境に合わせた2種類のロボットを開発し，論じることとする．
+
+	第\ref{zyoron}章では，研究背景と目的を示し，それに対する従来の研究を踏まえた上で，本研究のなすべき目標を明確に示した．
+
+	第\ref{waiyaturisagesiki}章では，高さのある橋脚での作業を想定したワイヤ吊り下げ式壁面塗膜除去ロボットについて述べる．
+
+	第\ref{sinsyukugata}章では，横方向に長い桁上での作業を想定した伸縮型壁面塗膜除去ロボットについて述べる．
+
+	第\ref{zissyouzikkenn}章では，現場を想定した環境での実証実験とその結果について述べる．
+
+	第\ref{conclusion}章では，本研究のまとめと今後の課題について述べる．

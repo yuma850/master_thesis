@@ -4,31 +4,189 @@
 \label{sinsyukugata}
 
 \section{機体構想}
+    本章で説明するロボットは横方向に長さのある桁などでの作業を想定している．
+    高速道路の桁など横方向に作業範囲が広い場合，第\ref{zyoron}章の図\ref{bridge_types}にも示されているように，縦方向に補剛材が多く存在する不連続な壁面である．
+    よって前章のロボットや先行研究のような，壁面上を吸着して移動するロボットは補剛材の度に再設置が必要となるため，作業効率が大幅に低下し，作業員にとっても大きな負担となる．
+
+    そこで本章のロボットは，加熱装置を搭載している部分を伸縮させて装置のみを移動させ，床面を走行し壁面加熱を行う方式とする．
+    この方式により，壁面吸着しないため設置が不要となり，不連続な壁面でも効率的に壁面加熱を行うことができる．
+    また床面を走行するため落下の危険性がなく安全な移動が可能であり，塗膜除去の際の壁面からの反力も無視することができる．
 
     \subsection{機体構成}
+        本ロボットは主に伸縮機構，壁面距離調整機構，塗膜除去機構，平面全方位移動機構の4つで構成される．
+        伸縮機構と壁面距離調整機構により装置を昇降させて壁面加熱を行い，その後塗膜除去機構により刃を塗膜に刺して再度伸縮することで，塗膜の除去も可能となる．
+        高さ方向1列の塗膜除去が完了したら全方位移動機構により壁面と加熱装置の水平を維持しながら横方向に移動可能である．
+        ロボットの構想を図 \ref{sinnsyukugata_kousou}に示す．
+
+    \vspace{-2mm}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1.0\textwidth]{sinnsyukugata_kousou.png}
+  	    \caption{machine image}
+		\label{sinnsyukugata_kousou}
+	\end{figure}
+    \vspace{-2mm}
+
+    \newpage
 
         \subsubsection{加熱装置と搭載方法}
+            ロボットに搭載する加熱装置は，前章と同様に，第\ref{zyoron}章の\ref{IHsouchikouse}で示したIH装置システムの先端部分にあたるインダクションヘッドとハンドヘルドトランスフォーマーを組みあわせたものであるが，インダクションヘッドの形状を前章のロボットと変更している．
+            前章のロボットは壁面に対して水平に加熱装置を配置していたが，それでは加熱装置の下部の塗装は加熱できない問題がある．
+            また本章のロボットは伸縮して加熱装置を昇降させるため，機体の姿勢安定性の面からも地面に対して水平に加熱装置を搭載する必要がある．
+            そこでインダクションヘッドの角度を変更し，ハンドヘルドトランスフォーマーと組み合わせた加熱装置を地面に対して水平に搭載した．
+            加熱装置を図\ref{kanetusouti}に示す．
 
-            \textgt{付録A～C}に機体部品の外注図面を掲載した.
+		\vspace{2mm}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.8\textwidth]{IHsouchi2.jpg}
+  		\caption{IHsystem}
+			\label{kanetusouti}
+		\end{figure}
+
+
 
         \subsubsection{伸縮方式の検討}
+            伸縮の方式は大きく分けて，機体下部からリンクやリードスクリューなどで押し上げる方式と，機体上部を支店に内部を引っ張り上げる方式の2つがある．
+            %機体下部からリンクやリードスクリューなどで押し上げる方式では，下から支えているため安定して伸縮が可能であり，
+            本研究では伸縮により重量物を安定して昇降させる点と，伸縮に規定のスピードが要求されていることから，後者の機体上部を支点に，内部を引っ張り上げる方式で伸縮を行う．
+            しかし日本橋梁より移動が容易であることが求められているため，縮小時のサイズは可能な限り抑える必要がある．
+            そこでロジャーアーム機構を用いた伸縮方式を採用する．
+            ロジャーアーム機構では縮んだ最小サイズは抑えることができるが，複数の層を持つ構造により高く伸ばすことが可能になる．
+            ロジャーアーム機構による伸縮の原理を図\ref{rogerarm}
+
+        \vspace{2mm}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.8\textwidth]{rogerarm.png}
+  		\caption{rogerarm mechanism}
+			\label{rogerarm}
+		\end{figure}
+
 
         \subsubsection{塗装除去機構の検討}
+
 
         \subsubsection{平面移動方式の検討}
 
     \subsection{構想の有意性}
-
+        構想にも記載した通り，伸縮型にし壁面吸着しないため設置が不要となり，不連続な壁面でも効率的に壁面加熱を行うことができる．
+        また床面を走行するため落下の危険性がなく安全な移動が可能であり，塗膜除去の際の壁面からの反力も無視することができる．
+        
+\newpage
 \section{製作機体}
 
     \subsection{機体概要}
+        実際に使用される IH 塗膜剥離装置を搭載した機体の製作を行った．
+        機体正面図を図\ref{robot_syoumenn}に，機体側面図を図\ref{robot_sokumenn}に，諸元を表\ref{syogenn2}に示す．
+
+    \begin{figure}[h]
+	    \centering
+	    % 画像1
+	    \hspace{-10mm} 
+	    \begin{minipage}{0.4\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{robot_syoumenn.jpg}
+			\caption{Produced machine}
+			\label{robot_syoumenn}
+	    \end{minipage}
+	    \hspace{10mm} % 画像1と画像2の間のスペース
+	    % 画像2
+	    \begin{minipage}{0.4\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{robot_sokumenn.jpg}
+			\caption{Overall diagram of the robot}
+			\label{robot_sokumenn}
+	    \end{minipage}
+	    \hspace{10mm} % 画像2と表の間のスペース
+	    % 表
+	    \begin{minipage}{0.5\linewidth}
+			\centering
+			\captionof{table}{Specification of machine}
+			\scalebox{1.5}{
+			\begin{tabular}{cc} \hline
+							Length & 800 [mm] \\
+							Width & 600 [mm] \\
+							Height & 1000 [mm] \\
+							Weight & [kg] \\ \hline
+			\end{tabular}
+			}
+			\label{syogenn2}
+	    \end{minipage}
+    \end{figure}
     
+    \newpage
     \subsection{伸縮機構}
+        前述の通り，ロジャーアーム機構を用いてワイヤーを組み，伸縮機構を製作した．
+        伸ばしている際の，機体正面図を図\ref{robot_syoumenn_nobi}に，機体側面図を図\ref{robot_sokumenn_nobi}に示す．
+
+    \begin{figure}[h]
+	    \centering
+	    % 画像1
+	    \hspace{-10mm} 
+	    \begin{minipage}{0.4\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{robot_syoumenn_nobi.jpg}
+			\caption{Produced machine}
+			\label{robot_syoumenn}
+	    \end{minipage}
+	    \hspace{10mm} % 画像1と画像2の間のスペース
+	    % 画像2
+	    \begin{minipage}{0.34\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{robot_sokumenn_nobi.jpg}
+			\caption{Overall diagram of the robot}
+			\label{robot_sokumenn}
+	    \end{minipage}
+    \end{figure}
 
     \subsection{壁面距離調整機構}
 
-    \subsection{全方向移動機構}
+    \begin{figure}[h]
+	    \centering
+	    % 画像1
+	    \hspace{-10mm} 
+	    \begin{minipage}{0.48\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{kyorityousei_front.jpg}
+			\caption{Produced machine}
+			\label{robot_syoumenn}
+	    \end{minipage}
+	    \hspace{10mm} % 画像1と画像2の間のスペース
+	    % 画像2
+	    \begin{minipage}{0.43\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{kyorityousei_back.jpg}
+			\caption{Overall diagram of the robot}
+			\label{robot_sokumenn}
+	    \end{minipage}
+    \end{figure}
 
+    \newpage
+    \subsection{塗膜除去機構}
+
+    \begin{figure}[h]
+	    \centering
+	    % 画像1
+	    \hspace{-10mm} 
+	    \begin{minipage}{0.4\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{screpa_front.jpg}
+			\caption{Produced machine}
+			\label{robot_syoumenn}
+	    \end{minipage}
+	    \hspace{10mm} % 画像1と画像2の間のスペース
+	    % 画像2
+	    \begin{minipage}{0.4\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{screpa_back.jpg}
+			\caption{Overall diagram of the robot}
+			\label{robot_sokumenn}
+	    \end{minipage}
+    \end{figure}
+
+
+\newpage
 \section{機体の性能評価}
 
     \subsection{加熱装置の昇降実験}

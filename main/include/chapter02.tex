@@ -32,7 +32,7 @@
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.8\textwidth]{dousaimage.png}
-  	\caption{W}
+  	\caption{moving image}
 		\label{label2_2}
 	\end{figure}
 
@@ -48,11 +48,24 @@
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.8\textwidth]{robotkousou.png}
-  	\caption{W}
+  	\caption{machine image}
 		\label{label2_1}
 	\end{figure}
 
   	\subsubsection{加熱装置と搭載方法}
+			ロボットに搭載する加熱装置は第\ref{zyoron}章の\ref{IHsouchikouse}で示したIH装置システムの先端部分にあたるインダクションヘッドとハンドヘルドトランスフォーマーを組みあわせたものである．
+			加熱装置を図\ref{kanetusouti}に示す．
+
+		\vspace{2mm}
+		\begin{figure}[IH system]
+			\centering
+			\includegraphics[width=0.8\textwidth]{kanetusouti.jpg}
+  		\caption{IH}
+			\label{label2_1}
+		\end{figure}
+
+			壁面の加熱は図\ref{kanetusouti}で下向きとなっているインダクションヘッドの先端で行うため，加熱装置は壁面に対して水平に搭載する必要がある．
+			よって重心位置は壁面に対して高さを抑えた壁よりの位置にすることができる．
 
 	\newpage
 
@@ -172,7 +185,8 @@
   \begin{figure}[h]
 	\centering
 	% 画像1
-	\begin{minipage}{0.29\linewidth}
+	\hspace{-20mm} 
+	\begin{minipage}{0.4\linewidth}
 			\centering
 			\includegraphics[width=\linewidth]{robotturisagebu.png}
 			\caption{Produced machine}
@@ -180,7 +194,7 @@
 	\end{minipage}
 	\hspace{10mm} % 画像1と画像2の間のスペース
 	% 画像2
-	\begin{minipage}{0.34\linewidth}
+	\begin{minipage}{0.4\linewidth}
 			\centering
 			\includegraphics[width=\linewidth]{robotzenntai1.png}
 			\caption{Overall diagram of the robot}
@@ -188,10 +202,10 @@
 	\end{minipage}
 	\hspace{10mm} % 画像2と表の間のスペース
 	% 表
-	\begin{minipage}{0.33\linewidth}
+	\begin{minipage}{0.5\linewidth}
 			\centering
 			\captionof{table}{Specification of machine}
-			\scalebox{1.2}{
+			\scalebox{1.5}{
 			\begin{tabular}{cc} \hline
 							Length & 693 [mm] \\
 							Width & 450 [mm] \\
@@ -203,7 +217,7 @@
 	\end{minipage}
 \end{figure}
 
-
+	\newpage
   \subsection{ロボットと壁面間の距離調整}
     IH塗膜剥離装置はIHヘッドが壁面に非接触な状態で加熱を行うが，十分な加熱を行うために壁面との適切な距離を常に一定に保つ必要がある．
 		また壁面を走行する際，重力と機体重量により壁面から剥がれる方向にモーメント力が発生する．
